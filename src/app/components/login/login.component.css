@@ -1,0 +1,32 @@
+mat-card {
+  width: 50%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+::ng-deep mat-form-field {
+  display: inline-block;
+  width: 80%;
+  margin: auto;
+}
+
+mat-card-title {
+  text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+
+button.submit {
+  width: 80%;
+  margin: auto;
+  align-self: center;
+  background-color: #E6DBFF;
+}
