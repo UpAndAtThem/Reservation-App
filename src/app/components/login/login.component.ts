@@ -14,9 +14,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSubmit(form: NgForm) {
-    console.log('Form Object inside login Component: ', form.value);
     this.loginService.user = form.value;
-    console.log('User on login service inside login component', this.loginService.user);
     this.loginService.router.navigate(['./user_home']);
   }
 }
