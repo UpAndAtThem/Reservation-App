@@ -11,6 +11,7 @@ export class CanActivateUsersHomeRouteGuard implements CanActivate {
   constructor(private loginService: LoginService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+      console.log('process.env');
       if (this.loginService.isUserAuthenticated()) {
         return true;
       } else {

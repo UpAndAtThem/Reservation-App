@@ -1,1 +1,2 @@
-<h1>Welcome, {{ userName }}</h1>
+<h1>Howdy, {{ userName }} I'm the user-home component and I know you're state because of the event you passed to me.</h1>
+<app-user (outputUser)='getUserName($event)'></app-user>
