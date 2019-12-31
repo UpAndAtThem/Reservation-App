@@ -1,0 +1,7 @@
+nav {
+  display: flex;
+}
+
+.right {
+  align-items: flex-end;
+}

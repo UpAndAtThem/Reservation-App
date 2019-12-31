@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'app-user-home',
@@ -8,13 +9,23 @@ import { Component, OnInit, Input } from '@angular/core';
 export class UserHomeComponent implements OnInit {
 
   constructor() { }
-  @Input() userName: string;
+
+  user: User;
+  userId: number;
+  userName: string;
+  email: string;
+  phone: string;
+  isActive: boolean;
 
   ngOnInit() {
   }
 
-  getUserName(user) {
-    console.log('yoyoyoy', user);
-    this.userName = user.userName;
+  getUser(u: User) {
+    this.userName = u.name;
+    this.userId = u.userId;
+    this.email = u.email;
+    this.phone = u.phone;
+    this.isActive = u.isActive;
+    this.user = u;
   }
 }

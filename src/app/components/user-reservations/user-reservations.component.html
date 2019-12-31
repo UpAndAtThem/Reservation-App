@@ -1,0 +1,20 @@
+<mat-card>
+  <h2 matLine>My Reservations</h2>
+  <div *ngFor="let tool of tools">
+    <h4 matLine>{{ tool.toolName }}</h4>
+    <div *ngFor='let userToolReso of reservationService.getUserToolResos(tool.toolId, userService.user.userId)'>
+      <ul>
+        <li>{{ userToolReso.reservationStartTime | date: 'shortTime' }} - {{ userToolReso.reservationEndTime | date: 'shortTime' }} <span (click)="reservationService.deleteReso(userToolReso)">X</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- <mat-selection-list #resos>
+    <mat-list-option *ngFor="let reso of reservations">
+      {{ user.name }}
+    </mat-list-option>
+
+    <p>Options selected: {{ resos.selectedOptions.selected.length }}</p>
+  </mat-selection-list> -->
+</mat-card>
+

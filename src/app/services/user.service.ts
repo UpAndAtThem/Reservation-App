@@ -7,7 +7,9 @@ export class UserService {
 
   constructor() { }
 
+  user = {userId: 1, name: 'Jason Nelson', email: 'jasonn318@gmail.com', phone: '555-2342', isActive: true};
+
   getUser() {
-    return {userName: 'Jason', email: 'jasonn318@gmail.com'};
+    return this.user;
   }
 }
