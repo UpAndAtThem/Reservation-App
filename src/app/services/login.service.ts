@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/User';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +19,6 @@ export class LoginService {
   }
 
   isUserAuthenticated() {
-    console.log('isUserAuthenticated()', this.getUser());
     return this.user.userId && this.user.name;
   }
 }

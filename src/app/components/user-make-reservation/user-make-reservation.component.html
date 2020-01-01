@@ -1,0 +1,7 @@
+<div class="example-container">
+  <mat-form-field class="ml-5">
+    <mat-select (selectionChange)="changeSelect($event)" placeholder="Select" [(value)]="selected">
+      <mat-option [value]="tool.toolName" *ngFor='let tool of tools'>{{ tool.toolName }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

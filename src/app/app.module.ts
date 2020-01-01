@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatCardModule, MatButtonModule, MatListModule } from '@angular/material';
-import { FormsModule } from '@angular/forms';
+import { MatInputModule, MatCardModule, MatButtonModule, MatListModule, MatFormFieldModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -20,6 +21,7 @@ import { ReservationService } from './services/reservation.service';
 import { ToolsService } from './services/tools.service';
 
 import { CanActivateUsersHomeRouteGuard } from './can-activate-users-home-route.guard';
+import { UserMakeReservationComponent } from './components/user-make-reservation/user-make-reservation.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { CanActivateUsersHomeRouteGuard } from './can-activate-users-home-route.
     UsersComponent,
     UserComponent,
     NavigationComponent,
-    UserReservationsComponent
+    UserReservationsComponent,
+    UserMakeReservationComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,10 @@ import { CanActivateUsersHomeRouteGuard } from './can-activate-users-home-route.
     MatCardModule,
     MatButtonModule,
     MatListModule,
-    FormsModule
+    MatFormFieldModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [LoginService, UserService, ReservationService, ToolsService, CanActivateUsersHomeRouteGuard],
   bootstrap: [AppComponent]

@@ -79,17 +79,14 @@ export class ReservationService {
   }
 
   getUserToolResos(toolId, userId) {
-    console.log('inside reservationService#getUserToolResos()', toolId, userId);
-    const localresos = this.reservations.filter(reso => {
+    return this.reservations.filter(reso => {
       return reso.toolId === toolId && reso.userId === userId;
     });
-
-    console.log(localresos);
-
-    return localresos;
   }
 
   deleteReso(reservation: Reservation) {
-    this.reservations = this.reservations.filter((reso) => reso.reservationId !== reservation.reservationId);
+    this.reservations = this.reservations.filter(
+      reso => reso.reservationId !== reservation.reservationId
+    );
   }
 }

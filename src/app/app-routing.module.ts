@@ -4,11 +4,12 @@ import { UserHomeComponent } from './components/user-home/user-home.component';
 import { LoginComponent } from './components/login/login.component';
 import { CanActivateUsersHomeRouteGuard } from './can-activate-users-home-route.guard';
 import { UserReservationsComponent } from './components/user-reservations/user-reservations.component';
+import { UserMakeReservationComponent } from './components/user-make-reservation/user-make-reservation.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'user_home', component: UserHomeComponent},
-  {path: 'make_reservation', component: UserReservationsComponent},
+  {path: 'make_reservation', component: UserMakeReservationComponent},
   {path: '**', component: LoginComponent }
 ];
 

@@ -6,11 +6,15 @@ import { Tool } from '../models/Tool';
   providedIn: 'root'
 })
 export class ToolsService {
-
+  tools: Tool[] = this.getTools();
   constructor() { }
 
   getTools(): Tool[] {
     return this.getMockTools();
+  }
+
+  getToolName(toolId) {
+    return this.getMockTools().find((tool) => toolId === tool.toolId).toolName;
   }
 
 // tslint:disable: max-line-length
