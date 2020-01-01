@@ -12,8 +12,11 @@ import { Tool } from '../../models/Tool';
   styleUrls: ['./user-reservations.component.css']
 })
 export class UserReservationsComponent implements OnInit {
-
-  constructor(protected reservationService: ReservationService, protected userService: UserService, public toolsService: ToolsService) { }
+  constructor(
+    protected reservationService: ReservationService,
+    protected userService: UserService,
+    public toolsService: ToolsService
+  ) {}
   reservations;
   reservationSubscription;
   tools: Tool[];
@@ -24,14 +27,14 @@ export class UserReservationsComponent implements OnInit {
     this.getReservations();
     this.user = this.userService.getUser();
     this.tools = this.toolsService.getTools();
-
-    console.log(this.tools);
   }
 
   getReservations() {
-    this.reservationSubscription = this.reservationService.getReservations(this.userService.user.userId).subscribe((value) => {
-      this.reservations = value;
-    });
+    this.reservationSubscription = this.reservationService
+      .getReservations(this.userService.user.userId)
+      .subscribe(value => {
+        this.reservations = value;
+      });
   }
 
   addReservation(form) {

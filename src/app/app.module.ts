@@ -1,7 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatCardModule, MatButtonModule, MatListModule, MatFormFieldModule } from '@angular/material';
+import {
+  MatInputModule,
+  MatCardModule,
+  MatButtonModule,
+  MatListModule,
+  MatFormFieldModule
+} from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -19,6 +25,7 @@ import { LoginService } from './services/login.service';
 import { UserService } from './services/user.service';
 import { ReservationService } from './services/reservation.service';
 import { ToolsService } from './services/tools.service';
+import { GlobalEventsManagerService } from './services/global-events-manager.service';
 
 import { CanActivateUsersHomeRouteGuard } from './can-activate-users-home-route.guard';
 import { UserMakeReservationComponent } from './components/user-make-reservation/user-make-reservation.component';
@@ -47,7 +54,14 @@ import { UserMakeReservationComponent } from './components/user-make-reservation
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [LoginService, UserService, ReservationService, ToolsService, CanActivateUsersHomeRouteGuard],
+  providers: [
+    LoginService,
+    UserService,
+    ReservationService,
+    ToolsService,
+    GlobalEventsManagerService,
+    CanActivateUsersHomeRouteGuard
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
