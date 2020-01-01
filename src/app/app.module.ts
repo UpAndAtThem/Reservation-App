@@ -29,6 +29,7 @@ import { GlobalEventsManagerService } from './services/global-events-manager.ser
 
 import { CanActivateUsersHomeRouteGuard } from './can-activate-users-home-route.guard';
 import { UserMakeReservationComponent } from './components/user-make-reservation/user-make-reservation.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UserMakeReservationComponent } from './components/user-make-reservation
     UserComponent,
     NavigationComponent,
     UserReservationsComponent,
-    UserMakeReservationComponent
+    UserMakeReservationComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

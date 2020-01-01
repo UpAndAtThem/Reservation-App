@@ -7,8 +7,7 @@ import { User } from '../../models/User';
   styleUrls: ['./user-home.component.css']
 })
 export class UserHomeComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   user: User;
   userId: number;
@@ -17,8 +16,7 @@ export class UserHomeComponent implements OnInit {
   phone: string;
   isActive: boolean;
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   getUser(u: User) {
     this.userName = u.name;
