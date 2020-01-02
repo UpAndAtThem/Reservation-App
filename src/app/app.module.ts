@@ -26,6 +26,7 @@ import { UserService } from './services/user.service';
 import { ReservationService } from './services/reservation.service';
 import { ToolsService } from './services/tools.service';
 import { GlobalEventsManagerService } from './services/global-events-manager.service';
+import { SharingService } from './services/sharing.service';
 
 import { CanActivateUsersHomeRouteGuard } from './can-activate-users-home-route.guard';
 import { UserMakeReservationComponent } from './components/user-make-reservation/user-make-reservation.component';
@@ -62,6 +63,7 @@ import { ContactComponent } from './components/contact/contact.component';
     ReservationService,
     ToolsService,
     GlobalEventsManagerService,
+    SharingService,
     CanActivateUsersHomeRouteGuard
   ],
   bootstrap: [AppComponent]

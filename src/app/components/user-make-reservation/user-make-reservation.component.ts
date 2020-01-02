@@ -18,7 +18,6 @@ export class UserMakeReservationComponent implements OnInit {
   selected;
 
   ngOnInit() {
-    console.log(this.tools);
   }
 
   saveReservation() {
@@ -28,6 +27,6 @@ export class UserMakeReservationComponent implements OnInit {
   }
 
   changeSelect(e) {
-    console.log(this.selected, e);
+    // console.log(this.selected, e);
   }
 }
