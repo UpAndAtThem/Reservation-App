@@ -1,0 +1,19 @@
+li {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+button {
+  display: inline-block;
+  width: 100%;
+}
+
+ul {
+  margin: auto;
+  padding: 0
+}
+
+h2 {
+  text-align: center;
+}

@@ -2,3 +2,35 @@ mat-selection-list {
   width: 90%;
   margin: auto;
 }
+
+mat-card {
+  width: 70%;
+  margin: auto;
+}
+
+mat-card.half-opacity {
+  background:  rgb(209,202,194, 0.25);
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  margin: 5px 0px 5px 0px;
+}
+
+li {
+  font-family: 'Courier New', Courier, monospace, sans-serif !important;
+}
+
+h2 {
+  text-align: center;
+}
+
+h4, h2 {
+  font-family: 'Muli', Arial, Helvetica, sans-serif;
+}

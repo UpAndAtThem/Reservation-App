@@ -27,6 +27,12 @@ mat-card-title {
 button.submit {
   width: 80%;
   margin: auto;
-  align-self: center;
   background-color: #E6DBFF;
+}
+
+.login {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  height: 100vh;
 }

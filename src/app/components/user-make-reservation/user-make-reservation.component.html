@@ -1,7 +1,30 @@
-<div class="example-container">
-  <mat-form-field class="ml-5">
-    <mat-select (selectionChange)="changeSelect($event)" placeholder="Select" [(value)]="selected">
-      <mat-option [value]="tool.toolName" *ngFor='let tool of tools'>{{ tool.toolName }}</mat-option>
+<h2 class="mb-5 mt-5 muli">{{'make a reservation' | uppercase }}</h2>
+<form #f="ngForm" (ngSubmit)="onReservationDateSubmit(f.value)" class="reservation-form half-opacity">
+  <mat-form-field>
+    <mat-select
+      ngModel
+      #tool="ngModel"
+      (selectionChange)="changeSelect()"
+      class="mat-select"
+      placeholder="Select a Tool"
+      name="tool"
+      [(value)]="selected"
+    >
+      <mat-option [value]="tool.toolName" *ngFor="let tool of tools">{{
+        tool.toolName
+      }}</mat-option>
     </mat-select>
   </mat-form-field>
-</div>
+
+  <mat-form-field class="mb-3">
+    <input [min]="minDate" [max]="maxDate" ngModel #date="ngModel" matInput name="date" placeholder="Choose a Date" required [matDatepicker]="myDatepicker"/>
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="myDatepicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #myDatepicker></mat-datepicker>
+    <mat-error *ngIf="date.invalid">{{getErrorMessage(date)}}</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" [disabled]="f.form.invalid" >Find Reservation Times</button>
+</form>

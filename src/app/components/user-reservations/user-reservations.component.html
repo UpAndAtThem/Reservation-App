@@ -1,19 +1,29 @@
-<mat-card>
-  <h2 matLine>My Reservations</h2>
+<mat-card class="half-opacity reservations">
+  <h2 matLine class='mb-5 mt-5'>{{'my reservations' | uppercase }}</h2>
   <div *ngFor="let tool of tools">
-    <h4 matLine>{{ tool.toolName }}</h4>
-    <div *ngFor='let userToolReso of reservationService.getUserToolResos(tool.toolId, userService.user.userId)'>
+    <h4 #h4 *ngIf="hasReservations(tool)" matLine>{{ tool.toolName }}</h4>
+    <div
+      *ngFor="
+        let reso of reservationService.getUserToolResos(
+          tool.toolId,
+          userService.user.userId
+        )
+      "
+    >
       <ul>
-        <li>{{ userToolReso.reservationStartTime | date: 'shortTime' }} - {{ userToolReso.reservationEndTime | date: 'shortTime' }} <span (click)="reservationService.deleteReso(userToolReso)">X</span></li>
+        <li>
+          {{ reso.reservationStartTime | date: 'EEEE, MMMM d' }}
+          {{ reso.reservationStartTime | date: 'shortTime' }}
+           -
+          {{ reso.reservationEndTime | date: 'shortTime' }}
+          <i
+            (click)="reservationService.deleteReso(reso)"
+            class="material-icons ml-3"
+          >
+            delete_outline
+          </i>
+        </li>
       </ul>
     </div>
   </div>
-  <!-- <mat-selection-list #resos>
-    <mat-list-option *ngFor="let reso of reservations">
-      {{ user.name }}
-    </mat-list-option>
-
-    <p>Options selected: {{ resos.selectedOptions.selected.length }}</p>
-  </mat-selection-list> -->
 </mat-card>
-

@@ -1,0 +1,5 @@
+<h2 mat-dialog-title>{{'select time to reserve' | uppercase }}</h2>
+<button mat-raised-button mat-dialog-close class="mb-5" color='primary'>{{ 'cancel' | uppercase }}</button>
+<mat-dialog-content>
+  <button (click)="reservationTime(timeSlot)" [disabled]='hasReservation(toolId, reservationDate, timeSlot)' *ngFor='let timeSlot of timeSlots' class='mb-3' mat-raised-button>{{ timeSlot }}</button>
+</mat-dialog-content>

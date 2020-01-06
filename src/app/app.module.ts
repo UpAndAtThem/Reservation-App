@@ -6,7 +6,10 @@ import {
   MatCardModule,
   MatButtonModule,
   MatListModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatDialogModule,
 } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,6 +34,8 @@ import { SharingService } from './services/sharing.service';
 import { CanActivateUsersHomeRouteGuard } from './can-activate-users-home-route.guard';
 import { UserMakeReservationComponent } from './components/user-make-reservation/user-make-reservation.component';
 import { ContactComponent } from './components/contact/contact.component';
+// tslint:disable-next-line: max-line-length
+import { UserMakeReservationTimeSelectDialogComponent } from './components/user-make-reservation-time-select-dialog/user-make-reservation-time-select-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,8 +47,10 @@ import { ContactComponent } from './components/contact/contact.component';
     NavigationComponent,
     UserReservationsComponent,
     UserMakeReservationComponent,
-    ContactComponent
+    ContactComponent,
+    UserMakeReservationTimeSelectDialogComponent
   ],
+  entryComponents: [UserMakeReservationTimeSelectDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -54,6 +61,9 @@ import { ContactComponent } from './components/contact/contact.component';
     MatListModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule
   ],

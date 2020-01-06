@@ -12,6 +12,7 @@ export class GlobalEventsManagerService {
   private _showNavBar: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     this.sharingService.getNavSettings() || false
   );
+
   public showNavBarEmitter: Observable<
     boolean
   > = this._showNavBar.asObservable();
