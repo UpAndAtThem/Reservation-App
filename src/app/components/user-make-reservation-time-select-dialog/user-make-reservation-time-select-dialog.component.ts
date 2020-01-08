@@ -38,11 +38,16 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
     this.dialogRef.updateSize('40%');
   }
 
-  reservationTime(timeSlot) {
+  getMilitaryHour(timeSlot) {
+    const hour = timeSlot.slice(0, 2);
     const timeOfDay = timeSlot.slice(timeSlot.length - 2);
-    let hour = timeSlot.slice(0, 2);
 
-    hour = timeOfDay === 'PM' ? parseInt(hour, 10) + 12 : parseInt(hour, 10);
+    return timeOfDay === 'PM' ? parseInt(hour, 10) + 12 : parseInt(hour, 10);
+  }
+
+  addReservationTime(timeSlot) {
+    const hour = this.getMilitaryHour(timeSlot);
+
     this.reservationDate.setHours(hour);
 
     const startReso = new Date(this.reservationDate.getTime());
@@ -64,9 +69,9 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
 
   hasReservation(toolId, date, timeSlot) {
     const res = this.allReservedTimesDate.some(reso => {
-      const resHour = reso.reservationStartTime.getHours();
+      const resoHour = reso.reservationStartTime.getHours();
       const resoStdHour = this.reservationService.milataryTimeToStandard[
-        resHour
+        resoHour
       ];
 
       return (
@@ -81,7 +86,6 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
   sameTimeOfDay(toBeAddedtimeSlot, resoHour) {
     const timeOfDay = toBeAddedtimeSlot.slice(toBeAddedtimeSlot.length - 2);
 
-    console.log(toBeAddedtimeSlot, timeOfDay, resoHour);
     return timeOfDay === (resoHour > 11 ? 'PM' : 'AM');
   }
 }
