@@ -1,0 +1,5 @@
+<p>Confirm Reservation: {{ data.toolName | uppercase }}</p>
+<p>{{ data.date | date:'fullDate' | uppercase }}</p>
+<p>{{ data.time }}</p>
+<button [mat-dialog-close]='true'>Confirm</button>
+<button [mat-dialog-close]='false'>Cancel</button>

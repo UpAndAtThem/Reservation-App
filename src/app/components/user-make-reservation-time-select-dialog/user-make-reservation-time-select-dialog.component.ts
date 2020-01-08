@@ -2,6 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Reservation } from '../../models/Reservation';
 import { ReservationService } from '../../services/reservation.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
+// tslint:disable-next-line: max-line-length
+import { UserMakeReservationConfirmDialogComponent } from '../user-make-reservation-confirm-dialog/user-make-reservation-confirm-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-make-reservation-time-select-dialog',
@@ -15,7 +18,9 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<
       UserMakeReservationTimeSelectDialogComponent
-    >
+    >,
+    private confirmResoDialog: MatDialog,
+    private router: Router
   ) {}
 
   timeSlots;
@@ -47,7 +52,7 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
 
   addReservationTime(timeSlot) {
     const hour = this.getMilitaryHour(timeSlot);
-
+    let confirmed;
     this.reservationDate.setHours(hour);
 
     const startReso = new Date(this.reservationDate.getTime());
@@ -64,7 +69,23 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
       reservationEndTime: endReso
     };
 
-    this.reservationService.addReservation(newReso);
+    const dialogRef = this.confirmResoDialog.open(UserMakeReservationConfirmDialogComponent, {
+      data: {
+        toolName: this.toolName,
+        date: this.reservationDate,
+        time: timeSlot
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      confirmed = res;
+
+      if (confirmed) {
+        this.reservationService.addReservation(newReso);
+        this.router.navigate(['user_home']);
+        this.dialogRef.close();
+      }
+    });
   }
 
   hasReservation(toolId, date, timeSlot) {
@@ -88,4 +109,6 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
 
     return timeOfDay === (resoHour > 11 ? 'PM' : 'AM');
   }
+
+  confirmReso() {}
 }
