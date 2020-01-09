@@ -47,13 +47,12 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
     const hour = timeSlot.slice(0, 2);
     const timeOfDay = timeSlot.slice(timeSlot.length - 2);
 
-    return timeOfDay === 'PM' ? parseInt(hour, 10) + 12 : parseInt(hour, 10);
+    return timeOfDay === 'PM' && hour !== '12' ? parseInt(hour, 10) + 12 : parseInt(hour, 10);
   }
 
   addReservationTime(timeSlot) {
     const hour = this.getMilitaryHour(timeSlot);
     let confirmed;
-    this.reservationDate.setHours(hour);
 
     const startReso = new Date(this.reservationDate.getTime());
     const endReso = new Date(this.reservationDate.getTime());
@@ -73,7 +72,8 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
       data: {
         toolName: this.toolName,
         date: this.reservationDate,
-        time: timeSlot
+        time: timeSlot,
+        hr: hour
       }
     });
 

@@ -12,18 +12,16 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-make-reservation.component.css']
 })
 export class UserMakeReservationComponent implements OnInit {
-  // userReservationForm: FormGroup;
   minDate = new Date();
   maxDate = new Date(this.minDate.getTime() + 86400000 * 31); // add 30 days to date obj
+  tools = this.toolsService.tools;
+  selected;
 
   constructor(
     public toolsService: ToolsService,
     private timeSelectDialog: MatDialog,
     private userService: UserService
   ) {}
-
-  tools = this.toolsService.tools;
-  selected;
 
   ngOnInit() {}
 

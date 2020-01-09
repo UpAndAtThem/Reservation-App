@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-user-make-reservation-confirm-dialog',
@@ -14,6 +14,5 @@ export class UserMakeReservationConfirmDialogComponent implements OnInit {
 
   ngOnInit() {
     this.dialogRef.updateSize('25%');
-    console.log('inside confirm component', this.data);
   }
 }
