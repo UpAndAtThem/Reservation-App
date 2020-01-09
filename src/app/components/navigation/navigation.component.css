@@ -1,0 +1,16 @@
+.navbar {
+  background-color: #673ab7 !important;
+}
+
+.nav-link.active {
+  color: white !important;
+  text-decoration: underline;
+}
+
+a.nav-item.nav-link:hover {
+  color: white !important;
+}
+
+.navbar a {
+  color: white;
+}

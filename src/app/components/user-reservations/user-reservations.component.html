@@ -1,29 +1,21 @@
-<mat-card class="half-opacity reservations">
-  <h2 matLine class='mb-5 mt-5'>{{'my reservations' | uppercase }}</h2>
-  <div *ngFor="let tool of tools">
+<mat-card class="reservations">
+  <h2 matLine class="mb-5 mt-5">{{ 'my reservations' | uppercase }}</h2>
+  <div *ngFor="let tool of tools" class="mb-5">
     <h4 #h4 *ngIf="hasReservations(tool)" matLine>{{ tool.toolName }}</h4>
-    <div
-      *ngFor="
-        let reso of reservationService.getUserToolResos(
+    <app-user-reservations-table
+      *ngIf="
+        reservationService.getUserToolResos(
+          tool.toolId,
+          userService.user.userId
+        ).length != 0
+      "
+      [tool]="tool"
+      [resos]="
+        reservationService.getUserToolResos(
           tool.toolId,
           userService.user.userId
         )
       "
-    >
-      <ul>
-        <li>
-          {{ reso.reservationStartTime | date: 'EEEE, MMMM d' }}
-          {{ reso.reservationStartTime | date: 'shortTime' }}
-           -
-          {{ reso.reservationEndTime | date: 'shortTime' }}
-          <i
-            (click)="reservationService.deleteReso(reso)"
-            class="material-icons ml-3"
-          >
-            delete_outline
-          </i>
-        </li>
-      </ul>
-    </div>
+    ></app-user-reservations-table>
   </div>
 </mat-card>

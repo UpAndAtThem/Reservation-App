@@ -10,6 +10,7 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatDialogModule,
+  MatTableModule,
 } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,6 +39,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { UserMakeReservationTimeSelectDialogComponent } from './components/user-make-reservation-time-select-dialog/user-make-reservation-time-select-dialog.component';
 // tslint:disable-next-line: max-line-length
 import { UserMakeReservationConfirmDialogComponent } from './components/user-make-reservation-confirm-dialog/user-make-reservation-confirm-dialog.component';
+import { UserReservationsTableComponent } from './components/user-reservations-table/user-reservations-table.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { UserMakeReservationConfirmDialogComponent } from './components/user-mak
     UserMakeReservationComponent,
     ContactComponent,
     UserMakeReservationTimeSelectDialogComponent,
-    UserMakeReservationConfirmDialogComponent
+    UserMakeReservationConfirmDialogComponent,
+    UserReservationsTableComponent
   ],
   entryComponents: [UserMakeReservationTimeSelectDialogComponent, UserMakeReservationConfirmDialogComponent],
   imports: [
@@ -67,6 +70,7 @@ import { UserMakeReservationConfirmDialogComponent } from './components/user-mak
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatTableModule,
     FormsModule,
     ReactiveFormsModule
   ],

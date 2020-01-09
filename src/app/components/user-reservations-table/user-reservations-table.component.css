@@ -1,0 +1,95 @@
+/* table {
+  text-align: center !important;
+  width: 100%;
+} */
+
+.mat-header-cell {
+  text-align: center;
+  padding: 0;
+  color: white;
+}
+
+/* ng-container {
+  padding: 0;
+} */
+
+mat-header-cell, mat-cell {
+  justify-content: center;
+  flex: 0 0 200px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: lightgrey;
+}
+
+/* offsets the header by the same amount of size/padding the sort button occupies */
+.mat-sort-header-container {
+  margin-left: 18px;
+}
+
+.mat-header-row {
+  background-color: #dd5571;
+
+}
+
+.mat-row, .mat-header-row {
+  border-bottom-width: 0px;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+}
+
+mat-table {
+  overflow-x: scroll;
+}
+
+.mat-column-date {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  /* flex: 0 0 25% !important; */
+  width: 20% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.mat-column-startTime {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 25% !important;
+  width: 20% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.mat-column-endTime {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 25% !important;
+  width: 20% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.mat-column-edit {
+  width: 20% !important;
+}
+
+.mat-column-delete {
+  width: 20% !important;
+}
+/* th.mat-header-cell:first-of-type {
+  padding-left: 0px;
+}
+
+th.mat-header-cell:last-of-type {
+  padding-right: 0px;
+}
+
+td.mat-cell:first-of-type {
+  padding-left: 0px;
+}
+
+td.mat-cell:last-of-type {
+  padding-right: 0px;
+} */
