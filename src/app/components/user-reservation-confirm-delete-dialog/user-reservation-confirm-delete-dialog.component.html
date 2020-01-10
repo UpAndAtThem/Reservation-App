@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{'Confirm Deletion' | uppercase}}</h1>
+<p>{{ data.tool.toolName | uppercase }}</p>
+<p>{{ data.reservation.reservationStartTime | date:'EEEE, MMMM d, y' | uppercase }}</p>
+<p class='mb-5'>{{ data.reservation.reservationStartTime | date:'shortTime'}}</p>
+<div class='buttons'>
+  <button mat-raised-button color='primary' [mat-dialog-close]='true'>Confirm</button>
+  <button mat-raised-button [mat-dialog-close]='false'>Cancel</button>
+</div>

@@ -1,0 +1,13 @@
+p, h1 {
+  text-align: center;
+  font-family: 'Muli', Arial, Helvetica, sans-serif;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  width: 45%;
+}

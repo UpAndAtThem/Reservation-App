@@ -10,7 +10,7 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatDialogModule,
-  MatTableModule,
+  MatTableModule
 } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -40,6 +40,8 @@ import { UserMakeReservationTimeSelectDialogComponent } from './components/user-
 // tslint:disable-next-line: max-line-length
 import { UserMakeReservationConfirmDialogComponent } from './components/user-make-reservation-confirm-dialog/user-make-reservation-confirm-dialog.component';
 import { UserReservationsTableComponent } from './components/user-reservations-table/user-reservations-table.component';
+// tslint:disable-next-line: max-line-length
+import { UserReservationConfirmDeleteDialogComponent } from './components/user-reservation-confirm-delete-dialog/user-reservation-confirm-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -54,9 +56,14 @@ import { UserReservationsTableComponent } from './components/user-reservations-t
     ContactComponent,
     UserMakeReservationTimeSelectDialogComponent,
     UserMakeReservationConfirmDialogComponent,
-    UserReservationsTableComponent
+    UserReservationsTableComponent,
+    UserReservationConfirmDeleteDialogComponent
   ],
-  entryComponents: [UserMakeReservationTimeSelectDialogComponent, UserMakeReservationConfirmDialogComponent],
+  entryComponents: [
+    UserMakeReservationTimeSelectDialogComponent,
+    UserMakeReservationConfirmDialogComponent,
+    UserReservationConfirmDeleteDialogComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

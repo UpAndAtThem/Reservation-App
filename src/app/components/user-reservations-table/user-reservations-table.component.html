@@ -21,7 +21,7 @@
 
   <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef> {{'Delete Reservation' | uppercase}} </th>
-    <td mat-cell *matCellDef="let element"><i (click)="reservationService.deleteReso(element)" class='material-icons'>delete_forever</i></td>
+    <td mat-cell *matCellDef="let element"><i (click)="onDeleteReso(element)" class='material-icons'>delete_forever</i></td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

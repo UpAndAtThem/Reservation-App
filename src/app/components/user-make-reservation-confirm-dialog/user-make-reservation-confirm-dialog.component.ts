@@ -13,6 +13,6 @@ export class UserMakeReservationConfirmDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.dialogRef.updateSize('25%');
+    this.dialogRef.updateSize('400px');
   }
 }

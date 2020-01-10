@@ -40,7 +40,7 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
       this.reservationDate
     );
 
-    this.dialogRef.updateSize('40%');
+    this.dialogRef.updateSize('450px');
   }
 
   getMilitaryHour(timeSlot) {
