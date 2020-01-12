@@ -8,14 +8,6 @@ mat-card {
   margin: auto;
 }
 
-.nav-link.active {
-  color: gray !important;
-}
-
-/* mat-card.half-opacity {
-  background:  rgb(209,202,194, 0.25);
-} */
-
 ul {
   display: flex;
   flex-direction: column;

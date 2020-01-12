@@ -11,3 +11,9 @@ p, h1 {
 button {
   width: 45%;
 }
+
+@media only screen and (max-width: 700px) {
+  mat-card {
+    width: 100%;
+  }
+}

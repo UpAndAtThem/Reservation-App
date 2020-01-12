@@ -43,7 +43,6 @@ export class UserReservationsComponent implements OnInit {
   }
 
   hasReservations(tool: Tool) {
-    // console.log('inside hasReservations method user-reso comp', this.reservationService.hasReservation(this.user.userId, tool.toolId));
     return this.reservationService.hasReservation(this.user.userId, tool.toolId);
   }
 }
