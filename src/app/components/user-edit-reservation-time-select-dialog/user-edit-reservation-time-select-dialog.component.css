@@ -1,0 +1,27 @@
+li {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+button {
+  display: inline-block;
+  width: 100%;
+}
+
+ul {
+  margin: auto;
+  padding: 0
+}
+
+h1, p {
+  text-align: center;
+}
+
+p {
+  font-family: 'Muli', Helvetica, sans-serif;
+}
+
+.time-slot-button {
+  padding: 0;
+}

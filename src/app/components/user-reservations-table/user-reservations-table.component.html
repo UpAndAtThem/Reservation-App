@@ -16,7 +16,7 @@
 
   <ng-container matColumnDef="edit">
     <th mat-header-cell *matHeaderCellDef> {{'Edit Reservation' | uppercase}} </th>
-    <td mat-cell *matCellDef="let element"><i class='material-icons'>edit</i> </td>
+    <td mat-cell *matCellDef="let element"><i (click)="onEditReso(element)" class='material-icons'>edit</i> </td>
   </ng-container>
 
   <ng-container matColumnDef="delete">

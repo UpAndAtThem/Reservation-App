@@ -4,11 +4,14 @@ import { ReservationService } from 'src/app/services/reservation.service';
 import { MatDialog } from '@angular/material';
 // tslint:disable-next-line: max-line-length
 import { UserReservationConfirmDeleteDialogComponent } from '../user-reservation-confirm-delete-dialog/user-reservation-confirm-delete-dialog.component';
+// tslint:disable-next-line: max-line-length
+import { UserEditReservationTimeSelectDialogComponent } from '../user-edit-reservation-time-select-dialog/user-edit-reservation-time-select-dialog.component';
 
 @Component({
   selector: 'app-user-reservations-table',
   templateUrl: './user-reservations-table.component.html',
-  styleUrls: ['./user-reservations-table.component.css']
+  styleUrls: ['./user-reservations-table.component.css'],
+
 })
 export class UserReservationsTableComponent implements OnInit {
   displayedColumns: string[] = [
@@ -23,7 +26,7 @@ export class UserReservationsTableComponent implements OnInit {
   @Input() tool;
 
   constructor(
-    protected toolService: ToolsService,
+    protected toolsService: ToolsService,
     protected reservationService: ReservationService,
     protected matDialog: MatDialog
   ) {}
@@ -41,5 +44,12 @@ export class UserReservationsTableComponent implements OnInit {
         this.reservationService.deleteReso(reso);
       }
     });
+  }
+
+  onEditReso(reso) {
+    const dialogRef = this.matDialog.open(UserEditReservationTimeSelectDialogComponent, { data: {
+      toolName: this.tool.toolName,
+      reservation: reso
+    }});
   }
 }
