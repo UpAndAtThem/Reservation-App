@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { ToolsService } from '../../services/tools.service';
 import { MatDialog } from '@angular/material';
 // tslint:disable-next-line: max-line-length

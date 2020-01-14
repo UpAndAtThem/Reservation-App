@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Reservation } from '../../models/Reservation';
 import { ReservationService } from '../../services/reservation.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';

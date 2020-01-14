@@ -31,12 +31,4 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {}
-
-  showToastr() {
-    this.toastr.success('SUCCESS!!');
-  }
-
-  successMessage(event) {
-    console.log('toast event', event);
-  }
 }

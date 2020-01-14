@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Reservation } from '../../models/Reservation';
 import { ReservationService } from '../../services/reservation.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
-// tslint:disable-next-line: max-line-length
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { formatDate } from '@angular/common';
