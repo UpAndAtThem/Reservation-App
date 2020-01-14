@@ -10,9 +10,11 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatDialogModule,
-  MatTableModule
+  MatTableModule,
+  MatRippleModule
 } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
+import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -69,6 +71,7 @@ import { UserEditReservationTimeSelectDialogComponent } from './components/user-
     UserEditReservationTimeSelectDialogComponent
   ],
   imports: [
+    ToastrModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -83,7 +86,8 @@ import { UserEditReservationTimeSelectDialogComponent } from './components/user-
     MatDialogModule,
     MatTableModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatRippleModule
   ],
   providers: [
     LoginService,

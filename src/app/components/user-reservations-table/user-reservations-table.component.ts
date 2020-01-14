@@ -6,12 +6,13 @@ import { MatDialog } from '@angular/material';
 import { UserReservationConfirmDeleteDialogComponent } from '../user-reservation-confirm-delete-dialog/user-reservation-confirm-delete-dialog.component';
 // tslint:disable-next-line: max-line-length
 import { UserEditReservationTimeSelectDialogComponent } from '../user-edit-reservation-time-select-dialog/user-edit-reservation-time-select-dialog.component';
+import { ToastrService } from 'ngx-toastr';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-user-reservations-table',
   templateUrl: './user-reservations-table.component.html',
-  styleUrls: ['./user-reservations-table.component.css'],
-
+  styleUrls: ['./user-reservations-table.component.css']
 })
 export class UserReservationsTableComponent implements OnInit {
   displayedColumns: string[] = [
@@ -28,28 +29,44 @@ export class UserReservationsTableComponent implements OnInit {
   constructor(
     protected toolsService: ToolsService,
     protected reservationService: ReservationService,
-    protected matDialog: MatDialog
+    protected matDialog: MatDialog,
+    private toastrService: ToastrService
   ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onDeleteReso(reso) {
-    const dialogRef = this.matDialog.open(UserReservationConfirmDeleteDialogComponent, {data: { reservation: reso, tool: this.tool}});
+    const dialogRef = this.matDialog.open(
+      UserReservationConfirmDeleteDialogComponent,
+      { data: { reservation: reso, tool: this.tool } }
+    );
 
     dialogRef.afterClosed().subscribe(res => {
       const confirmed = res;
 
       if (confirmed) {
         this.reservationService.deleteReso(reso);
+        this.toastrService.success(
+          `${this.tool.toolName} ${formatDate(
+            reso.reservationStartTime,
+            'short',
+            'en-US'
+          )}`,
+          'Reservation deleted'
+        );
       }
     });
   }
 
   onEditReso(reso) {
-    const dialogRef = this.matDialog.open(UserEditReservationTimeSelectDialogComponent, { data: {
-      toolName: this.tool.toolName,
-      reservation: reso
-    }});
+    const dialogRef = this.matDialog.open(
+      UserEditReservationTimeSelectDialogComponent,
+      {
+        data: {
+          toolName: this.tool.toolName,
+          reservation: reso
+        }
+      }
+    );
   }
 }

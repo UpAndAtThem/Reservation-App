@@ -4,6 +4,8 @@ import { ReservationService } from '../../services/reservation.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 // tslint:disable-next-line: max-line-length
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-user-edit-reservation-time-select-dialog',
@@ -18,7 +20,8 @@ export class UserEditReservationTimeSelectDialogComponent implements OnInit {
       UserEditReservationTimeSelectDialogComponent
     >,
     private confirmResoDialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) {}
 
   timeSlots;
@@ -64,6 +67,18 @@ export class UserEditReservationTimeSelectDialogComponent implements OnInit {
     this.data.reservation.reservationEndTime = endReso;
 
     this.dialogRef.close();
+    this.toastrService.success(
+      `New Reservation: ${this.toolName} ${ formatDate(this.data.reservation.reservationStartTime, 'short', 'en-US')}`,
+      'Reservation edited'
+    );
+  }
+
+  time(dateObj) {
+    const timeOfDay = dateObj.getHours() >= 12 ? 'PM' : 'AM';
+    let hour = dateObj.getHours();
+    hour = hour > 12 ? hour - 12 : hour;
+    const min = dateObj.getMinutes();
+    return hour + ':' + min + ' ' + timeOfDay;
   }
 
   hasReservation(toolId, date, timeSlot) {

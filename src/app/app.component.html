@@ -1,2 +1,2 @@
 <app-navigation *ngIf='showNBar'></app-navigation>
-<router-outlet></router-outlet>
+<router-outlet (successToast)="successMessage($event)"></router-outlet>
