@@ -46,6 +46,7 @@ import { UserReservationsTableComponent } from './components/user-reservations-t
 import { UserReservationConfirmDeleteDialogComponent } from './components/user-reservation-confirm-delete-dialog/user-reservation-confirm-delete-dialog.component';
 // tslint:disable-next-line: max-line-length
 import { UserEditReservationTimeSelectDialogComponent } from './components/user-edit-reservation-time-select-dialog/user-edit-reservation-time-select-dialog.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { UserEditReservationTimeSelectDialogComponent } from './components/user-
     UserMakeReservationConfirmDialogComponent,
     UserReservationsTableComponent,
     UserReservationConfirmDeleteDialogComponent,
-    UserEditReservationTimeSelectDialogComponent
+    UserEditReservationTimeSelectDialogComponent,
+    SignUpComponent
   ],
   entryComponents: [
     UserMakeReservationTimeSelectDialogComponent,

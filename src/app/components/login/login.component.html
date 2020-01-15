@@ -1,44 +1,47 @@
-<div class="login">
-  <mat-card class="mt-5">
-    <mat-card-title>Login</mat-card-title>
-    <mat-card-content>
-      <form #f="ngForm" (ngSubmit)="onLoginSubmit(f)" class="flex">
-        <div class="flex-center">
-          <mat-form-field>
-            <input
-              required
-              ngModel
-              #userName="ngModel"
-              type="text"
-              matInput
-              placeholder="Username"
-              name="name"
-            />
-          </mat-form-field>
-        </div>
-        <div class="flex-center">
-          <mat-form-field>
-            <input
-              required
-              ngModel
-              type="password"
-              matInput
-              placeholder="Password"
-              #password="ngModel"
-              name="password"
-            />
-          </mat-form-field>
-        </div>
-        <button
-          mat-raised-button
-          color="success"
-          type="submit"
-          class="submit mt-5"
-          [disabled]="f.form.invalid"
-        >
-          Submit
-        </button>
-      </form>
-    </mat-card-content>
-  </mat-card>
+<div class="background">
+  <div class="login">
+    <mat-card>
+      <mat-card-title class='mb-5'>{{'Login'}}</mat-card-title>
+      <mat-card-content>
+        <form #f="ngForm" (ngSubmit)="onLoginSubmit(f)" class="flex">
+          <div class="flex-center">
+            <mat-form-field>
+              <input
+                required
+                ngModel
+                #userName="ngModel"
+                type="text"
+                matInput
+                placeholder="Username"
+                name="name"
+              />
+            </mat-form-field>
+          </div>
+          <div class="flex-center">
+            <mat-form-field>
+              <input
+                required
+                ngModel
+                type="password"
+                matInput
+                placeholder="Password"
+                #password="ngModel"
+                name="password"
+              />
+            </mat-form-field>
+          </div>
+          <button
+            mat-raised-button
+            color="success"
+            type="submit"
+            class="submit mt-5"
+            [disabled]="f.form.invalid"
+          >
+            Submit
+          </button>
+        </form>
+      </mat-card-content>
+      <a [routerLink]="['/sign_up']" routerLinkActive="router-link-active" class="right">sign up</a>
+    </mat-card>
+  </div>
 </div>

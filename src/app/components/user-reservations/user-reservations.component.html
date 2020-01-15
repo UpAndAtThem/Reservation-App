@@ -1,21 +1,26 @@
-<mat-card class="reservations">
-  <h2 matLine class="mb-5 mt-5">{{ 'my reservations' | uppercase }}</h2>
-  <div *ngFor="let tool of tools" class="mb-5">
-    <h4 #h4 *ngIf="hasReservations(tool)" matLine>{{ tool.toolName }}</h4>
-    <app-user-reservations-table
-      *ngIf="
-        reservationService.getUserToolResos(
-          tool.toolId,
-          userService.user.userId
-        ).length != 0
-      "
-      [tool]="tool"
-      [resos]="
-        reservationService.getUserToolResos(
-          tool.toolId,
-          userService.user.userId
-        )
-      "
-    ></app-user-reservations-table>
+<div class="container">
+  <div class="reservations">
+    <div class="myReso">
+      <h2 class="mb-5 mt-5">{{ 'my reservations' | uppercase }}</h2>
+    </div>
+    <div *ngFor="let tool of tools" class="mb-5">
+      <h4 #h4 *ngIf="hasReservations(tool)">{{ tool.toolName }}</h4>
+      <app-user-reservations-table
+        *ngIf="
+          reservationService.getUserToolResos(
+            tool.toolId,
+            userService.user.userId
+          ).length != 0
+        "
+        [tool]="tool"
+        [resos]="
+          reservationService.getUserToolResos(
+            tool.toolId,
+            userService.user.userId
+          )
+        "
+      ></app-user-reservations-table>
+    </div>
   </div>
-</mat-card>
+</div>
+

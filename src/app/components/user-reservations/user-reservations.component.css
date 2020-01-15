@@ -1,10 +1,29 @@
-mat-selection-list {
-  width: 90%;
+/* .container {
+  background-image: url(../../../assets/handyman-background.jpg);
+  margin: 0;
+  width: 100vw;
+} */
+
+.reservations {
+  width: 75%;
   margin: auto;
 }
 
-mat-card {
-  width: 60%;
+:host {
+  width: 100%;
+  display: block;
+}
+
+.container {
+  background: url(../../../assets/handyman-background.jpg) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  width: 2000px;
+  overflow: hidden;
+}
+
+mat-selection-list {
+  width: 100%;
   margin: auto;
 }
 
@@ -27,29 +46,62 @@ h2 {
   text-align: center;
 }
 
-h4, h2 {
+h4 {
+  color: white;
+  text-decoration: solid;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+h4,
+h2 {
   font-family: 'Muli', Arial, Helvetica, sans-serif;
 }
 
 @media only screen and (max-width: 1000px) {
+  .container {
+    width: 100vw;
+  }
+
   mat-card {
-    width: 70%;
+    width: 100vw;
   }
 }
 
 @media only screen and (max-width: 900px) {
+  .container {
+    width: 100vw;
+  }
+
   mat-card {
-    width: 80%;
+    width: 100vw;
   }
 }
 
 @media only screen and (max-width: 800px) {
+  .container {
+    width: 100vw;
+  }
+
   mat-card {
-    width: 90%;
+    width: 100vw;
   }
 }
 
 @media only screen and (max-width: 700px) {
+  .container {
+    width: 100vw;
+  }
+
+  mat-card {
+    width: 100vw;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .container {
+    width: 100vw;
+  }
+
   mat-card {
     width: 100%;
   }
