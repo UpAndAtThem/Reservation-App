@@ -1,9 +1,3 @@
-/* .container {
-  background-image: url(../../../assets/handyman-background.jpg);
-  margin: 0;
-  width: 100vw;
-} */
-
 .reservations {
   width: 75%;
   margin: auto;
@@ -14,11 +8,11 @@
   display: block;
 }
 
-.container {
+.container-fluid {
   background: url(../../../assets/handyman-background.jpg) no-repeat center center fixed;
   background-size: cover;
   height: 100%;
-  width: 2000px;
+  width: 100% !important;
   overflow: hidden;
 }
 
@@ -57,52 +51,15 @@ h2 {
   font-family: 'Muli', Arial, Helvetica, sans-serif;
 }
 
-@media only screen and (max-width: 1000px) {
-  .container {
-    width: 100vw;
-  }
-
-  mat-card {
-    width: 100vw;
+@media only screen and (max-width: 850px) {
+  .reservations {
+    width: 85% !important;
   }
 }
 
-@media only screen and (max-width: 900px) {
-  .container {
-    width: 100vw;
-  }
 
-  mat-card {
-    width: 100vw;
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .container {
-    width: 100vw;
-  }
-
-  mat-card {
-    width: 100vw;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  .container {
-    width: 100vw;
-  }
-
-  mat-card {
-    width: 100vw;
-  }
-}
-
-@media only screen and (max-width: 575px) {
-  .container {
-    width: 100vw;
-  }
-
-  mat-card {
-    width: 100%;
+@media only screen and (max-width: 750px) {
+  .reservations {
+    width: 100% !important;
   }
 }

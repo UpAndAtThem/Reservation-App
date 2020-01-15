@@ -6,7 +6,7 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 40%;
+  width: 80%;
   margin: auto;
 }
 
@@ -34,11 +34,11 @@ h2 {
   font-family: 'Muli';
 }
 
-.container {
+.container-fluid {
   background: url(../../../assets/handyman-background.jpg);
   display: flex;
   height: 100vh;
   align-content: center;
   justify-content: center;
+  width: 100% !important;
 }
-
