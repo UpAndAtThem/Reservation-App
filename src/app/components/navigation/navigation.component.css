@@ -1,6 +1,7 @@
 .navbar {
   background-color: rgb(86,62,48) !important;
-  margin: 0
+  margin: 0px;
+  border-radius: 0px;
 }
 
 .nav-link.active {

@@ -14,7 +14,7 @@ textarea {
   margin: auto;
   border: none;
   border-radius: 2px;
-  background-color: rgb(255, 255, 255, 0.70);
+  background-color: rgb(255, 255, 255, 0.7);
 }
 
 button {
@@ -31,18 +31,17 @@ form {
 label {
   margin-left: 5px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.75rem;
-  color: rgb(95, 141, 119);
-  color: rgb(69, 56, 51);
-  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
 }
 
 .contact-us {
   display: flex;
   flex-direction: column;
-  margin-top: 130px;
+  margin-top: 110px;
   margin-left: 25px;
-  background-color: rgb(255, 255, 255, 0.30);
+  background-color: rgb(255, 255, 255, 0.3);
   width: 50vw;
   height: fit-content;
   border-radius: 5px;
@@ -54,7 +53,7 @@ label {
   font-size: 3rem;
 
   color: rgb(69, 56, 51);
-  /* text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; */
+  text-shadow: -0.5px 0 white, 0 0.5px white, 0.5px 0 white, 0 -0.5px white;
   filter: drop-shadow(3px 3px 5px white);
   margin-top: 10px;
 }
@@ -76,5 +75,23 @@ label {
 
   .background h1 {
     font-size: 3rem;
+  }
+}
+
+@media only screen and (max-width: 925px) {
+  .background {
+    background: url(../../../assets/contact_brick.jpg);
+    background-position: 60% 25%;
+    background-size: cover;
+  }
+
+  .contact-us {
+    margin-top: 190px;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .contact-us {
+    margin-top: 185px;
   }
 }
