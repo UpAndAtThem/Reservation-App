@@ -1,0 +1,80 @@
+.background {
+  height: stretch;
+  display: flex;
+  justify-content: flex-start !important;
+  background: url(../../../assets/contact_brick.jpg);
+  background-size: cover;
+  background-position: 75% 25%;
+}
+
+input,
+textarea {
+  display: block;
+  width: 95%;
+  margin: auto;
+  border: none;
+  border-radius: 2px;
+  background-color: rgb(255, 255, 255, 0.70);
+}
+
+button {
+  width: 95%;
+  margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+label {
+  margin-left: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.75rem;
+  color: rgb(95, 141, 119);
+  color: rgb(69, 56, 51);
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.contact-us {
+  display: flex;
+  flex-direction: column;
+  margin-top: 130px;
+  margin-left: 25px;
+  background-color: rgb(255, 255, 255, 0.30);
+  width: 50vw;
+  height: fit-content;
+  border-radius: 5px;
+}
+
+.contact-us h1 {
+  align-self: center;
+  font-family: 'Muli', Arial, Helvetica, sans-serif;
+  font-size: 3rem;
+
+  color: rgb(69, 56, 51);
+  /* text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; */
+  filter: drop-shadow(3px 3px 5px white);
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .background {
+    background: url(../../../assets/contact_brick.jpg);
+    background-position: 60% 25%;
+    background-size: cover;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .background {
+    background: url(../../../assets/contact_brick.jpg);
+    background-position: 60% 25%;
+    background-size: cover;
+  }
+
+  .background h1 {
+    font-size: 3rem;
+  }
+}

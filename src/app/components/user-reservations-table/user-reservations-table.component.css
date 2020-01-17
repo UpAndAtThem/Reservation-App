@@ -18,7 +18,8 @@ mat-header-cell, mat-cell {
 }
 
 .mat-header-row {
-  background-color: rgb(196, 161, 121);
+  background-color: rgb(196, 161, 121, 0.75);
+
 }
 
 .mat-row, .mat-header-row {
@@ -28,6 +29,7 @@ mat-header-cell, mat-cell {
 table {
   width: 100%;
   text-align: center;
+  background-color: rgb(255, 255, 255, 0.30);
 }
 
 mat-table {
