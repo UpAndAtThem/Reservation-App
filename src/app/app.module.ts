@@ -11,7 +11,8 @@ import {
   MatNativeDateModule,
   MatDialogModule,
   MatTableModule,
-  MatRippleModule
+  MatRippleModule,
+  MatCheckboxModule
 } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
@@ -47,6 +48,10 @@ import { UserReservationConfirmDeleteDialogComponent } from './components/user-r
 // tslint:disable-next-line: max-line-length
 import { UserEditReservationTimeSelectDialogComponent } from './components/user-edit-reservation-time-select-dialog/user-edit-reservation-time-select-dialog.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AdminConfigComponent } from './components/admin-config/admin-config.component';
+import { AdminAddToolComponent } from './components/admin-add-tool/admin-add-tool.component';
+import { AdminEditToolComponent } from './components/admin-edit-tool/admin-edit-tool.component';
+import { AdminDeleteToolComponent } from './components/admin-delete-tool/admin-delete-tool.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +69,11 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     UserReservationsTableComponent,
     UserReservationConfirmDeleteDialogComponent,
     UserEditReservationTimeSelectDialogComponent,
-    SignUpComponent
+    SignUpComponent,
+    AdminConfigComponent,
+    AdminAddToolComponent,
+    AdminEditToolComponent,
+    AdminDeleteToolComponent
   ],
   entryComponents: [
     UserMakeReservationTimeSelectDialogComponent,
@@ -89,7 +98,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     MatTableModule,
     FormsModule,
     ReactiveFormsModule,
-    MatRippleModule
+    MatRippleModule,
+    MatCheckboxModule
   ],
   providers: [
     LoginService,

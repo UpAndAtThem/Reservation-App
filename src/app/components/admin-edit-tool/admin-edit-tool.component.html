@@ -1,0 +1,18 @@
+<div class="container-fluid mt-5">
+  <mat-card>
+    <mat-card-content>
+      <h3>Edit Tool</h3>
+      <form #f="ngForm" (ngSubmit)="onToolEdit(f.value)">
+        <mat-form-field class='mb-4'>
+          <mat-label>Select tool to edit</mat-label>
+          <mat-select ngModel name="tool">
+            <mat-option *ngFor="let tool of tools" [value]="tool">
+              {{ tool.toolName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button>Edit Tool</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

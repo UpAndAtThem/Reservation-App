@@ -1,0 +1,36 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-form-field {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline !important;
+}
+
+
+
+mat-card {
+  width: 450px;
+  background-color: rgb(255, 255, 255, 0.3) !important;
+  margin-left: 50px;
+}
+
+@media only screen and (max-width: 630px) {
+  mat-card {
+    margin: auto;
+    width: 90%;
+  }
+}
+
+h3 {
+  text-align: center;
+}

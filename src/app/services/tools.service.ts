@@ -13,6 +13,10 @@ export class ToolsService {
     return this.getMockTools();
   }
 
+  addTool(tool: Tool) {
+    this.tools.push(tool);
+  }
+
   getToolName(toolId) {
     return this.getMockTools().find((tool) => toolId === tool.toolId).toolName;
   }

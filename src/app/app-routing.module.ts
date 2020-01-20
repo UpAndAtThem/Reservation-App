@@ -7,6 +7,7 @@ import { CanActivateUsersHomeRouteGuard } from './can-activate-users-home-route.
 import { UserReservationsComponent } from './components/user-reservations/user-reservations.component';
 import { UserMakeReservationComponent } from './components/user-make-reservation/user-make-reservation.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { AdminConfigComponent } from './components/admin-config/admin-config.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'user_home', component: UserHomeComponent},
   {path: 'make_reservation', component: UserMakeReservationComponent},
   {path: 'contact', component: ContactComponent},
+  {path: 'admin', component: AdminConfigComponent},
   {path: '**', component: LoginComponent }
 ];
 
