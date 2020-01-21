@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ToolsService } from 'src/app/services/tools.service';
 import { Tool } from 'src/app/models/Tool';
 import { MatDialog } from '@angular/material';
@@ -11,7 +11,8 @@ import { AdminEditToolInputDialogComponent } from '../admin-edit-tool-input-dial
   styleUrls: ['./admin-edit-tool.component.css']
 })
 export class AdminEditToolComponent implements OnInit {
-  tools: Tool[];
+  @Input() tools: Tool[];
+
 
   constructor(private toolService: ToolsService, private editToolDialog: MatDialog) { }
 
@@ -27,5 +28,9 @@ export class AdminEditToolComponent implements OnInit {
         this.toolService.changeEditedTool(tool);
       }
     });
+  }
+
+  onDeletedTool() {
+    console.log('deleted event, inside edit tool comp');
   }
 }

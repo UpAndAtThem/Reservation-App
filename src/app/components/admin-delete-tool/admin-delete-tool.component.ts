@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Tool } from 'src/app/models/Tool';
 import { ToolsService } from 'src/app/services/tools.service';
 import { MatDialog } from '@angular/material';
@@ -11,6 +11,7 @@ import { AdminDeleteToolConfirmDialogComponent } from '../admin-delete-tool-conf
 })
 export class AdminDeleteToolComponent implements OnInit {
   tools: Tool[];
+  @Output() deletedTool = new EventEmitter();
 
   constructor(private toolService: ToolsService, private deleteToolDialog: MatDialog) { }
 
@@ -24,6 +25,7 @@ export class AdminDeleteToolComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       this.toolService.deleteTool(toolData.tool);
       this.tools = this.toolService.tools;
+      this.deletedTool.emit();
     });
   }
 }
