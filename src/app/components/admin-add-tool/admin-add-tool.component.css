@@ -1,3 +1,5 @@
+@import '../admin-config/admin-config.component.css';
+
 form {
   display: flex;
   flex-direction: column;
@@ -15,8 +17,6 @@ mat-form-field {
 .inline {
   display: inline !important;
 }
-
-
 
 mat-card {
   width: 450px;

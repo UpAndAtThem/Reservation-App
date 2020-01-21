@@ -5,7 +5,7 @@ import { ToolsService } from 'src/app/services/tools.service';
 @Component({
   selector: 'app-admin-add-tool',
   templateUrl: './admin-add-tool.component.html',
-  styleUrls: ['./admin-add-tool.component.css']
+  styleUrls: ['./admin-add-tool.component.css', '../admin-config/admin-config.component.css']
 })
 export class AdminAddToolComponent implements OnInit {
 

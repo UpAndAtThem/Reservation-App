@@ -1,5 +1,9 @@
-.container-fluid {
+.const-image {
   background-image: url(../../../assets/construction.jpg);
   background-size: cover;
   height: fit-content;
+}
+
+.muli {
+  font-family: 'Muli', Arial, Helvetica, sans-serif !important;
 }
