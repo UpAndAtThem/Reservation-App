@@ -52,6 +52,7 @@ import { AdminConfigComponent } from './components/admin-config/admin-config.com
 import { AdminAddToolComponent } from './components/admin-add-tool/admin-add-tool.component';
 import { AdminEditToolComponent } from './components/admin-edit-tool/admin-edit-tool.component';
 import { AdminDeleteToolComponent } from './components/admin-delete-tool/admin-delete-tool.component';
+import { AdminAddToolConfirmDialogComponent } from './components/admin-add-tool-confirm-dialog/admin-add-tool-confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -73,13 +74,15 @@ import { AdminDeleteToolComponent } from './components/admin-delete-tool/admin-d
     AdminConfigComponent,
     AdminAddToolComponent,
     AdminEditToolComponent,
-    AdminDeleteToolComponent
+    AdminDeleteToolComponent,
+    AdminAddToolConfirmDialogComponent
   ],
   entryComponents: [
     UserMakeReservationTimeSelectDialogComponent,
     UserMakeReservationConfirmDialogComponent,
     UserReservationConfirmDeleteDialogComponent,
-    UserEditReservationTimeSelectDialogComponent
+    UserEditReservationTimeSelectDialogComponent,
+    AdminAddToolConfirmDialogComponent
   ],
   imports: [
     ToastrModule.forRoot(),

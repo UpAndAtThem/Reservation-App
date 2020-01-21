@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-content>
       <h3 class='muli'>Add Tool</h3>
-      <form #f="ngForm" (ngSubmit)="onAddTool(f.value)">
+      <form #f="ngForm" (ngSubmit)="onAddTool(f.value); f.reset();">
         <mat-form-field>
           <label for="toolName" class="block">Tool Name:</label>
           <input matInput type="text" id="toolName" name="toolName" ngModel />
