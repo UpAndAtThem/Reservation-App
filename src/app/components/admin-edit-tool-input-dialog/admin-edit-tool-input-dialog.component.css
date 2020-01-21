@@ -1,0 +1,5 @@
+@import '../admin-add-tool/admin-add-tool.component.css';
+
+mat-card {
+  margin: 0;
+}

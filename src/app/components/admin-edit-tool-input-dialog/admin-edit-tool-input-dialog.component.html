@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-card-content>
+    <h3 class="muli">Edit Existing Tool</h3>
+    <form #f="ngForm" (ngSubmit)="onEditTool(f); f.reset()">
+      <mat-form-field>
+        <label for="toolName" class="block">Tool Name:</label>
+        <input
+          matInput
+          type="text"
+          id="toolName"
+          name="toolName"
+          [value]="toolName"
+          [ngModel]="toolName"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <label for="toolDescription" class="block">Tool Description</label>
+        <textarea
+          matInput
+          name="toolDescription"
+          id="toolDescription"
+          cols="30"
+          rows="5"
+          name="toolDescription"
+          [ngModel]="toolDescription"
+        ></textarea>
+      </mat-form-field>
+
+      <mat-checkbox
+        name="userNeedsCert"
+        class="inline mb-4"
+        [ngModel]="userNeedsCert"
+        >Needs Certification</mat-checkbox
+      >
+
+      <button mat-raised-button>Edit Tool</button>
+    </form>
+  </mat-card-content>
+</mat-card>

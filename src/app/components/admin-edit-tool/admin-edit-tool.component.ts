@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToolsService } from 'src/app/services/tools.service';
 import { Tool } from 'src/app/models/Tool';
+import { MatDialog } from '@angular/material';
+import { AdminEditToolInputDialogComponent } from '../admin-edit-tool-input-dialog/admin-edit-tool-input-dialog.component';
+
 
 @Component({
   selector: 'app-admin-edit-tool',
@@ -10,13 +13,17 @@ import { Tool } from 'src/app/models/Tool';
 export class AdminEditToolComponent implements OnInit {
   tools: Tool[];
 
-  constructor(private toolService: ToolsService) { }
+  constructor(private toolService: ToolsService, private editToolDialog: MatDialog) { }
 
   ngOnInit() {
     this.tools = this.toolService.getTools();
   }
 
   onToolEdit(form) {
-    console.log('admin-edit-tool-comp', form);
+    const dialogRef = this.editToolDialog.open(AdminEditToolInputDialogComponent, {data: {tool: form}});
+
+    dialogRef.afterClosed().subscribe(tool => {
+      this.toolService.changeEditedTool(tool);
+    });
   }
 }

@@ -39,7 +39,7 @@ label {
 .contact-us {
   display: flex;
   flex-direction: column;
-  margin-top: 110px;
+  margin-top: 140px;
   margin-left: 25px;
   background-color: rgb(255, 255, 255, 0.3);
   width: 50vw;
@@ -52,9 +52,9 @@ label {
   font-family: 'Muli', Arial, Helvetica, sans-serif;
   font-size: 3rem;
 
-  color: rgb(69, 56, 51);
-  text-shadow: -0.5px 0 white, 0 0.5px white, 0.5px 0 white, 0 -0.5px white;
-  filter: drop-shadow(3px 3px 5px white);
+  color: rgb(255, 255, 255);
+  /* text-shadow: -0.5px 0 white, 0 0.5px white, 0.5px 0 white, 0 -0.5px white; */
+  filter: drop-shadow(3px 3px 5px black);
   margin-top: 10px;
 }
 
@@ -92,6 +92,6 @@ label {
 
 @media only screen and (min-width: 1300px) {
   .contact-us {
-    margin-top: 185px;
+    margin-top: 235px;
   }
 }

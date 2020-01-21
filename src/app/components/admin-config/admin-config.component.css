@@ -1,9 +1,16 @@
 .const-image {
-  background-image: url(../../../assets/construction.jpg);
+  background: url(../../../assets/construction.jpg) no-repeat center center fixed;
   background-size: cover;
   height: fit-content;
+  background-position: 60% 25%;
 }
 
 .muli {
   font-family: 'Muli', Arial, Helvetica, sans-serif !important;
+}
+
+@media only screen and (max-width: 750px) {
+  .const-image {
+    background-position: 80% 25%;
+  }
 }
