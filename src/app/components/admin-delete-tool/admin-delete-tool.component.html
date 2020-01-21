@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-content>
       <h3 class="muli">Delete Tool</h3>
-      <form #f="ngForm" (ngSubmit)="onToolDelete(f.value)">
+      <form #f="ngForm" (ngSubmit)="onToolDelete(f.value); f.reset()">
         <mat-form-field class='mb-4'>
           <mat-label>Select tool to delete</mat-label>
           <mat-select ngModel name="tool">

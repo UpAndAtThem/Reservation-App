@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { ToolsService } from 'src/app/services/tools.service';
 import { Tool } from 'src/app/models/Tool';
 import { MatDialog } from '@angular/material';
@@ -16,14 +16,16 @@ export class AdminEditToolComponent implements OnInit {
   constructor(private toolService: ToolsService, private editToolDialog: MatDialog) { }
 
   ngOnInit() {
-    this.tools = this.toolService.getTools();
+    this.tools = this.toolService.tools;
   }
 
   onToolEdit(form) {
     const dialogRef = this.editToolDialog.open(AdminEditToolInputDialogComponent, {data: {tool: form}});
 
     dialogRef.afterClosed().subscribe(tool => {
-      this.toolService.changeEditedTool(tool);
+      if (!!tool) {
+        this.toolService.changeEditedTool(tool);
+      }
     });
   }
 }

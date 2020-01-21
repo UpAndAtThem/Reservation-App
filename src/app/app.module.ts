@@ -54,6 +54,8 @@ import { AdminEditToolComponent } from './components/admin-edit-tool/admin-edit-
 import { AdminDeleteToolComponent } from './components/admin-delete-tool/admin-delete-tool.component';
 import { AdminAddToolConfirmDialogComponent } from './components/admin-add-tool-confirm-dialog/admin-add-tool-confirm-dialog.component';
 import { AdminEditToolInputDialogComponent } from './components/admin-edit-tool-input-dialog/admin-edit-tool-input-dialog.component';
+// tslint:disable-next-line: max-line-length
+import { AdminDeleteToolConfirmDialogComponent } from './components/admin-delete-tool-confirm-dialog/admin-delete-tool-confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,8 @@ import { AdminEditToolInputDialogComponent } from './components/admin-edit-tool-
     AdminEditToolComponent,
     AdminDeleteToolComponent,
     AdminAddToolConfirmDialogComponent,
-    AdminEditToolInputDialogComponent
+    AdminEditToolInputDialogComponent,
+    AdminDeleteToolConfirmDialogComponent
   ],
   entryComponents: [
     UserMakeReservationTimeSelectDialogComponent,
@@ -86,6 +89,7 @@ import { AdminEditToolInputDialogComponent } from './components/admin-edit-tool-
     UserEditReservationTimeSelectDialogComponent,
     AdminAddToolConfirmDialogComponent,
     AdminEditToolInputDialogComponent,
+    AdminDeleteToolConfirmDialogComponent,
   ],
   imports: [
     ToastrModule.forRoot(),

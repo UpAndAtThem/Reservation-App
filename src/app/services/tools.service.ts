@@ -60,6 +60,12 @@ export class ToolsService {
     this.tools.push(tool);
   }
 
+  deleteTool(toolData: Tool) {
+    this.tools = this.tools.filter(existingTools => {
+      return existingTools.toolId === toolData.toolId ? false : true;
+    });
+  }
+
   changeEditedTool(editedTool: Tool) {
     const toolToReplace = this.tools.find(tool => tool.toolId === editedTool.toolId);
     Object.assign(toolToReplace, editedTool);
