@@ -22,19 +22,16 @@ export class UserReservationsComponent implements OnInit {
   reservationSubscription: Subscription;
   tools: Tool[] = this.toolService.tools;
   toolSub: Subscription = this.toolService
-  .getToolUpdateListener()
-  .subscribe((tools: Tool[]) => {
-    console.log('tool subscription triggered');
-    this.tools = tools;
-    console.log(tools);
-  });
+    .getToolUpdateListener()
+    .subscribe((tools: Tool[]) => {
+      this.tools = tools;
+    });
 
   @Input() user;
 
   ngOnInit() {
     this.getReservations();
     this.user = this.userService.getUser();
-    // this.toolService.getTools();
   }
 
   getReservations() {

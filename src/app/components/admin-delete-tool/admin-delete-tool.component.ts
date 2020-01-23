@@ -22,7 +22,6 @@ export class AdminDeleteToolComponent implements OnInit {
     this.toolSub = this.toolService.getToolUpdateListener().subscribe(toolData => {
       this.tools = toolData;
     });
-    console.log('inside admin-delete tool comp', this.tools);
   }
 
   onToolDelete(toolData) {

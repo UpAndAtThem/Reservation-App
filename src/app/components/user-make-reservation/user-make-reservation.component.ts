@@ -26,16 +26,13 @@ export class UserMakeReservationComponent implements OnInit {
 
   ngOnInit() {
     this.toolSub = this.toolsService.getToolUpdateListener().subscribe((toolData) => {
-      console.log('inside make-reso', toolData);
       this.tools = toolData;
     });
-    // this.toolsService.getTools();
   }
 
   changeSelect() {}
 
   onReservationDateSubmit(form) {
-    console.log(form);
     this.timeSelectDialog.open(UserMakeReservationTimeSelectDialogComponent, {
       data: {
         userId: this.userService.user.userId,

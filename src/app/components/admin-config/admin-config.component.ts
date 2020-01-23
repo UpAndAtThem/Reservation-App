@@ -15,7 +15,6 @@ export class AdminConfigComponent implements OnInit {
   constructor(private toolService: ToolsService) { }
 
   ngOnInit() {
-    // this.toolService.getTools();
     this.toolSub = this.toolService.getToolUpdateListener().subscribe((toolData) => {
       this.tools = toolData;
     });

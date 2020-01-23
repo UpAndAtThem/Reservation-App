@@ -15,7 +15,6 @@ export class AdminEditToolComponent implements OnInit {
   toolSub: Subscription = this.toolService
     .getToolUpdateListener()
     .subscribe(toolData => {
-      console.log('subscription triggered: admin edit tool', toolData);
       this.tools = toolData;
     });
 

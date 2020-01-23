@@ -16,7 +16,6 @@ export class ToolsService {
     this.http.get<{message: string, tools: Tool[]}>('http://localhost:3000/api/tools').subscribe((toolData) => {
       const tools = toolData.tools;
       this.tools = tools;
-      // console.log(toolData);
       this.toolsUpdated.next(tools);
     });
   }
@@ -34,7 +33,6 @@ export class ToolsService {
 
     this.http.post('http://localhost:3000/api/addTool', tool, httpOptions).subscribe(() => {
       this.getTools();
-      console.log('arguments ', arguments);
     });
   }
 
@@ -54,7 +52,6 @@ export class ToolsService {
   }
 
   getToolId(toolName) {
-    console.log(toolName);
     return this.tools.find(tool => toolName === tool.toolName).toolId;
   }
 }
