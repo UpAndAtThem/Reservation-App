@@ -36,16 +36,7 @@ label {
   text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
 }
 
-.contact-us {
-  display: flex;
-  flex-direction: column;
-  margin-top: 140px;
-  margin-left: 25px;
-  background-color: rgb(255, 255, 255, 0.3);
-  width: 50vw;
-  height: fit-content;
-  border-radius: 5px;
-}
+
 
 .contact-us h1 {
   align-self: center;
@@ -94,4 +85,16 @@ label {
   .contact-us {
     margin-top: 235px;
   }
+}
+
+.contact-us {
+  display: flex;
+  flex-direction: column;
+  margin-top: 140px;
+  margin-left: 25px;
+  background-color: rgb(255, 255, 255, 0.3);
+  /* box-shadow: 3px 8px 30px rgb(66, 61, 61) !important; */
+  width: 50vw;
+  height: fit-content;
+  border-radius: 5px;
 }

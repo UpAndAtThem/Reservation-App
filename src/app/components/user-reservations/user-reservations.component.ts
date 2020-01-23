@@ -5,6 +5,7 @@ import { UserService } from '../../services/user.service';
 import { ToolsService } from '../../services/tools.service';
 
 import { Tool } from '../../models/Tool';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-reservations',
@@ -15,18 +16,25 @@ export class UserReservationsComponent implements OnInit {
   constructor(
     protected reservationService: ReservationService,
     protected userService: UserService,
-    public toolsService: ToolsService
+    public toolService: ToolsService
   ) {}
   reservations;
-  reservationSubscription;
-  tools: Tool[];
+  reservationSubscription: Subscription;
+  tools: Tool[] = this.toolService.tools;
+  toolSub: Subscription = this.toolService
+  .getToolUpdateListener()
+  .subscribe((tools: Tool[]) => {
+    console.log('tool subscription triggered');
+    this.tools = tools;
+    console.log(tools);
+  });
 
   @Input() user;
 
   ngOnInit() {
     this.getReservations();
     this.user = this.userService.getUser();
-    this.tools = this.toolsService.getTools();
+    // this.toolService.getTools();
   }
 
   getReservations() {
@@ -43,6 +51,9 @@ export class UserReservationsComponent implements OnInit {
   }
 
   hasReservations(tool: Tool) {
-    return this.reservationService.hasReservation(this.user.userId, tool.toolId);
+    return this.reservationService.hasReservation(
+      this.user.userId,
+      tool.toolId
+    );
   }
 }

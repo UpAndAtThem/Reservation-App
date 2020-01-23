@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 // tslint:disable-next-line: max-line-length
 import { UserMakeReservationTimeSelectDialogComponent } from '../user-make-reservation-time-select-dialog/user-make-reservation-time-select-dialog.component';
 import { UserService } from 'src/app/services/user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-make-reservation',
@@ -14,6 +15,7 @@ export class UserMakeReservationComponent implements OnInit {
   minDate = new Date();
   maxDate = new Date(this.minDate.getTime() + 86400000 * 31); // add 30 days to date obj
   tools = this.toolsService.tools;
+  toolSub: Subscription;
   selected;
 
   constructor(
@@ -22,11 +24,18 @@ export class UserMakeReservationComponent implements OnInit {
     private userService: UserService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.toolSub = this.toolsService.getToolUpdateListener().subscribe((toolData) => {
+      console.log('inside make-reso', toolData);
+      this.tools = toolData;
+    });
+    // this.toolsService.getTools();
+  }
 
   changeSelect() {}
 
   onReservationDateSubmit(form) {
+    console.log(form);
     this.timeSelectDialog.open(UserMakeReservationTimeSelectDialogComponent, {
       data: {
         userId: this.userService.user.userId,

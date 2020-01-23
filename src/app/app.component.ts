@@ -10,6 +10,7 @@ import {
 import { GlobalEventsManagerService } from './services/global-events-manager.service';
 import { SharingService } from './services/sharing.service';
 import { ToastrService } from 'ngx-toastr';
+import { ToolsService } from './services/tools.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit {
   constructor(
     protected globalEventsManager: GlobalEventsManagerService,
     private sharingService: SharingService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private toolService: ToolsService
   ) {
     this.globalEventsManager.showNavBarEmitter.subscribe(mode => {
       this.sharingService.setNavSettings(mode);
@@ -30,5 +32,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.toolService.getTools();
+  }
 }

@@ -30,6 +30,7 @@ table {
   width: 100%;
   text-align: center;
   background-color: rgb(255, 255, 255, 0.30);
+  box-shadow: 6px 10px 25px rgb(48, 44, 44) !important;
 }
 
 mat-table {

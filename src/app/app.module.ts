@@ -56,6 +56,7 @@ import { AdminAddToolConfirmDialogComponent } from './components/admin-add-tool-
 import { AdminEditToolInputDialogComponent } from './components/admin-edit-tool-input-dialog/admin-edit-tool-input-dialog.component';
 // tslint:disable-next-line: max-line-length
 import { AdminDeleteToolConfirmDialogComponent } from './components/admin-delete-tool-confirm-dialog/admin-delete-tool-confirm-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { AdminDeleteToolConfirmDialogComponent } from './components/admin-delete
     FormsModule,
     ReactiveFormsModule,
     MatRippleModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    HttpClientModule
   ],
   providers: [
     LoginService,

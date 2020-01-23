@@ -3,7 +3,7 @@ import { ToolsService } from 'src/app/services/tools.service';
 import { Tool } from 'src/app/models/Tool';
 import { MatDialog } from '@angular/material';
 import { AdminEditToolInputDialogComponent } from '../admin-edit-tool-input-dialog/admin-edit-tool-input-dialog.component';
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin-edit-tool',
@@ -11,26 +11,34 @@ import { AdminEditToolInputDialogComponent } from '../admin-edit-tool-input-dial
   styleUrls: ['./admin-edit-tool.component.css']
 })
 export class AdminEditToolComponent implements OnInit {
-  @Input() tools: Tool[];
+  tools: Tool[] = this.toolService.tools;
+  toolSub: Subscription = this.toolService
+    .getToolUpdateListener()
+    .subscribe(toolData => {
+      console.log('subscription triggered: admin edit tool', toolData);
+      this.tools = toolData;
+    });
 
+  constructor(
+    private toolService: ToolsService,
+    private editToolDialog: MatDialog
+  ) {}
 
-  constructor(private toolService: ToolsService, private editToolDialog: MatDialog) { }
-
-  ngOnInit() {
-    this.tools = this.toolService.tools;
-  }
+  ngOnInit() {}
 
   onToolEdit(form) {
-    const dialogRef = this.editToolDialog.open(AdminEditToolInputDialogComponent, {data: {tool: form}});
+    const dialogRef = this.editToolDialog.open(
+      AdminEditToolInputDialogComponent,
+      {
+        data: { tool: form },
+        panelClass: 'admin-edit-tool-input-dialog-component'
+      }
+    );
 
     dialogRef.afterClosed().subscribe(tool => {
       if (!!tool) {
         this.toolService.changeEditedTool(tool);
       }
     });
-  }
-
-  onDeletedTool() {
-    console.log('deleted event, inside edit tool comp');
   }
 }
