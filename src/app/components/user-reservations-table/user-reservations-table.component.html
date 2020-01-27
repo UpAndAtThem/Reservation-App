@@ -25,5 +25,5 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr appReservationHighlight mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr appReservationHighlight [highlightColor]="'rgb(255, 255, 255)'" [defaultColor]="''" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
