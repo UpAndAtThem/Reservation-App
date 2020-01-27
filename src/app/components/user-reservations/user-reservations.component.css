@@ -1,5 +1,5 @@
 .reservations {
-  width: 75%;
+  width: 95%;
   margin: auto;
 }
 
@@ -53,14 +53,47 @@ h2 {
   font-family: 'Muli', Arial, Helvetica, sans-serif;
 }
 
-@media only screen and (max-width: 850px) {
-  .reservations {
-    width: 85% !important;
+@media only screen and (min-width: 100px) {
+  .tableContent {
+    width: 95% !important;
+    margin: auto;
+  }
+
+  .container-fluid {
+    background-position: 95% 0%;
   }
 }
 
-@media only screen and (max-width: 750px) {
-  .reservations {
-    width: 100% !important;
+@media only screen and (min-width: 737px) {
+  .tableContent {
+    width: 70% !important;
+    margin: auto;
+  }
+
+  .container-fluid {
+    background-position: 0% 95%;
+  }
+}
+
+@media only screen and (min-width: 753px) and (max-width: 960px) {
+  .container-fluid {
+    background-position: 50% 0%;
+  }
+}
+@media only screen and (min-width: 1100px) {
+  .tableContent {
+    width: 53% !important;
+    margin: auto;
+  }
+
+  .container-fluid {
+    background-position: 40% 0%;
+  }
+}
+
+@media only screen and (min-width: 1320px) {
+  .tableContent {
+    width: 43% !important;
+    margin: auto;
   }
 }

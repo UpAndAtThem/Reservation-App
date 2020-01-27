@@ -57,6 +57,7 @@ import { AdminEditToolInputDialogComponent } from './components/admin-edit-tool-
 // tslint:disable-next-line: max-line-length
 import { AdminDeleteToolConfirmDialogComponent } from './components/admin-delete-tool-confirm-dialog/admin-delete-tool-confirm-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReservationHighlightDirective } from './directives/reservation-highlight.directive';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { HttpClientModule } from '@angular/common/http';
     AdminDeleteToolComponent,
     AdminAddToolConfirmDialogComponent,
     AdminEditToolInputDialogComponent,
-    AdminDeleteToolConfirmDialogComponent
+    AdminDeleteToolConfirmDialogComponent,
+    ReservationHighlightDirective
   ],
   entryComponents: [
     UserMakeReservationTimeSelectDialogComponent,
