@@ -58,6 +58,7 @@ import { AdminEditToolInputDialogComponent } from './components/admin-edit-tool-
 import { AdminDeleteToolConfirmDialogComponent } from './components/admin-delete-tool-confirm-dialog/admin-delete-tool-confirm-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReservationHighlightDirective } from './directives/reservation-highlight.directive';
+import { ReservationDropdownDirective } from './directives/reservation-dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { ReservationHighlightDirective } from './directives/reservation-highligh
     AdminAddToolConfirmDialogComponent,
     AdminEditToolInputDialogComponent,
     AdminDeleteToolConfirmDialogComponent,
-    ReservationHighlightDirective
+    ReservationHighlightDirective,
+    ReservationDropdownDirective
   ],
   entryComponents: [
     UserMakeReservationTimeSelectDialogComponent,
@@ -92,7 +94,7 @@ import { ReservationHighlightDirective } from './directives/reservation-highligh
     UserEditReservationTimeSelectDialogComponent,
     AdminAddToolConfirmDialogComponent,
     AdminEditToolInputDialogComponent,
-    AdminDeleteToolConfirmDialogComponent,
+    AdminDeleteToolConfirmDialogComponent
   ],
   imports: [
     ToastrModule.forRoot(),
