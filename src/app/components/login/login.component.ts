@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { UserService } from '../../services/user.service';
 import { GlobalEventsManagerService } from '../../services/global-events-manager.service';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',

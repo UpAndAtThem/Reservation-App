@@ -11,7 +11,6 @@ import { GlobalEventsManagerService } from './services/global-events-manager.ser
 import { SharingService } from './services/sharing.service';
 import { ToastrService } from 'ngx-toastr';
 import { ToolsService } from './services/tools.service';
-import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -25,8 +24,7 @@ export class AppComponent implements OnInit {
     protected globalEventsManager: GlobalEventsManagerService,
     private sharingService: SharingService,
     private toastr: ToastrService,
-    private toolService: ToolsService,
-    private authService: AuthService
+    private toolService: ToolsService
   ) {
     this.globalEventsManager.showNavBarEmitter.subscribe(mode => {
       this.sharingService.setNavSettings(mode);

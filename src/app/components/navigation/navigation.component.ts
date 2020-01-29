@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalEventsManagerService } from 'src/app/services/global-events-manager.service';
-import { AuthService } from 'src/app/auth.service';
-
-// import { GlobalEventsManagerService } from 'src/app/services/global-events-manager.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navigation',
