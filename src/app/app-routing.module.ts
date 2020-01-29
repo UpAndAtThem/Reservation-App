@@ -8,14 +8,17 @@ import { UserReservationsComponent } from './components/user-reservations/user-r
 import { UserMakeReservationComponent } from './components/user-make-reservation/user-make-reservation.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AdminConfigComponent } from './components/admin-config/admin-config.component';
+import { AuthGuard } from './route-guards/auth-guard.service';
+import { AuthGuardAdmin } from './route-guards/auth-guard-admin.service';
+
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'sign_up', component: SignUpComponent},
-  {path: 'user_home', component: UserHomeComponent},
-  {path: 'make_reservation', component: UserMakeReservationComponent},
-  {path: 'contact', component: ContactComponent},
-  {path: 'admin', component: AdminConfigComponent},
+  {path: 'sign_up', canActivate: [AuthGuard], component: SignUpComponent},
+  {path: 'user_home', canActivate: [AuthGuard], component: UserHomeComponent},
+  {path: 'make_reservation', canActivate: [AuthGuard], component: UserMakeReservationComponent},
+  {path: 'contact', canActivate: [AuthGuard], component: ContactComponent},
+  {path: 'admin', canActivate: [AuthGuard, AuthGuardAdmin], component: AdminConfigComponent},
   {path: '**', component: LoginComponent }
 ];
 

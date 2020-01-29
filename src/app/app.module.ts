@@ -59,6 +59,9 @@ import { AdminDeleteToolConfirmDialogComponent } from './components/admin-delete
 import { HttpClientModule } from '@angular/common/http';
 import { ReservationHighlightDirective } from './directives/reservation-highlight.directive';
 import { ReservationDropdownDirective } from './directives/reservation-dropdown.directive';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './route-guards/auth-guard.service';
+import { AuthGuardAdmin } from './route-guards/auth-guard-admin.service';
 
 @NgModule({
   declarations: [
@@ -124,7 +127,10 @@ import { ReservationDropdownDirective } from './directives/reservation-dropdown.
     ToolsService,
     GlobalEventsManagerService,
     SharingService,
-    CanActivateUsersHomeRouteGuard
+    CanActivateUsersHomeRouteGuard,
+    AuthService,
+    AuthGuard,
+    AuthGuardAdmin
   ],
   bootstrap: [AppComponent]
 })

@@ -4,26 +4,29 @@ import { NgForm } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { UserService } from '../../services/user.service';
 import { GlobalEventsManagerService } from '../../services/global-events-manager.service';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     public userService: UserService,
-    protected globalEventsManager: GlobalEventsManagerService
-  ) {
-  }
+    protected globalEventsManager: GlobalEventsManagerService,
+    private authService: AuthService
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onLoginSubmit(form: NgForm) {
-    this.globalEventsManager.showNBar(true);
     this.loginService.setUser();
-    this.loginService.router.navigate(['./user_home']);
+    setTimeout(() => {
+      this.globalEventsManager.showNBar(true);
+      this.authService.login();
+      this.loginService.router.navigate(['./user_home']);
+    }, 800);
   }
 }

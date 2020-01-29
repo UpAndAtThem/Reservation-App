@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalEventsManagerService } from 'src/app/services/global-events-manager.service';
+import { AuthService } from 'src/app/auth.service';
 
 // import { GlobalEventsManagerService } from 'src/app/services/global-events-manager.service';
 
@@ -12,13 +13,15 @@ import { GlobalEventsManagerService } from 'src/app/services/global-events-manag
 export class NavigationComponent implements OnInit {
   constructor(
     public router: Router,
-    protected globalEventsManager: GlobalEventsManagerService
+    protected globalEventsManager: GlobalEventsManagerService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {}
 
   logout() {
     this.globalEventsManager.showNBar(false);
+    this.authService.logout();
     this.router.navigate(['login']);
   }
 }
