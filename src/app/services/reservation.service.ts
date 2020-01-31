@@ -20,70 +20,70 @@ export class ReservationService {
     {
       reservationId: 1,
       userId: 1,
-      toolId: 1,
+      toolId: '5e336f67a279a87c8a4e4e10',
       reservationStartTime: new Date('January 17, 2020 12:00:00'),
       reservationEndTime: new Date('January 17, 2020 13:00:00')
     },
     {
       reservationId: 2,
       userId: 1,
-      toolId: 1,
+      toolId: '5e336f67a279a87c8a4e4e10',
       reservationStartTime: new Date('January 17, 2020 13:00:00'),
       reservationEndTime: new Date('January 17, 2020 14:00:00')
     },
     {
       reservationId: 3,
       userId: 1,
-      toolId: 2,
+      toolId: '5e336f67a279a87c8a4e4e10',
       reservationStartTime: new Date('January 18, 2020 19:00:00'),
       reservationEndTime: new Date('January 18, 2020 20:00:00')
     },
     {
       reservationId: 4,
       userId: 1,
-      toolId: 2,
+      toolId: '5e336f67a279a87c8a4e4e10',
       reservationStartTime: new Date('February 02, 2020 16:00:00'),
       reservationEndTime: new Date('February 02, 2020 17:00:00')
     },
     {
       reservationId: 5,
       userId: 1,
-      toolId: 3,
+      toolId: '5e336db5a279a87c8a4e4e0f',
       reservationStartTime: new Date('February 5, 2020 16:00:00'),
       reservationEndTime: new Date('February 5, 2020 17:00:00')
     },
     {
       reservationId: 6,
       userId: 1,
-      toolId: 5,
+      toolId: '5e336db5a279a87c8a4e4e0f',
       reservationStartTime: new Date('January 20, 2020 16:00:00'),
       reservationEndTime: new Date('January 20, 2020 17:00:00')
     },
     {
       reservationId: 7,
       userId: 1,
-      toolId: 5,
+      toolId: '5e336db5a279a87c8a4e4e0f',
       reservationStartTime: new Date('January 20, 2020 08:00:00'),
       reservationEndTime: new Date('January 20, 2020 09:00:00')
     },
     {
       reservationId: 8,
       userId: 1,
-      toolId: 1,
+      toolId: '5e336d2fa279a87c8a4e4e0e',
       reservationStartTime: new Date('January 31, 2020 11:00:00'),
       reservationEndTime: new Date('January 31, 2020 12:00:00')
     },
     {
       reservationId: 9,
       userId: 1,
-      toolId: 1,
+      toolId: '5e336d2fa279a87c8a4e4e0e',
       reservationStartTime: new Date('January 31, 2020 12:00:00'),
       reservationEndTime: new Date('January 31, 2020 13:00:00')
     },
     {
       reservationId: 10,
       userId: 1,
-      toolId: 1,
+      toolId: '5e336d2fa279a87c8a4e4e0e',
       reservationStartTime: new Date('January 31, 2020 08:00:00'),
       reservationEndTime: new Date('January 31, 2020 09:00:00')
     }

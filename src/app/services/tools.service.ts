@@ -14,6 +14,7 @@ export class ToolsService {
 
   getTools() {
     this.http.get<{message: string, tools: Tool[]}>('http://localhost:3000/api/tools').subscribe((toolData) => {
+      console.log('retrieved tools from the DB', toolData.tools);
       const tools = toolData.tools;
       this.tools = tools;
       this.toolsUpdated.next(tools);
@@ -25,33 +26,36 @@ export class ToolsService {
   }
 
   addTool(tool: Tool) {
+    tool.userNeedsCert = !!tool.userNeedsCert;
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
       })
     };
-
+    console.log('inside post addTool outside promise');
     this.http.post('http://localhost:3000/api/addTool', tool, httpOptions).subscribe(() => {
+      console.log('inside post addTool');
       this.getTools();
     });
   }
 
   deleteTool(toolData: Tool) {
     this.tools = this.tools.filter(existingTools => {
-      return existingTools.toolId === toolData.toolId ? false : true;
+      return existingTools._id === toolData._id ? false : true;
     });
   }
 
   changeEditedTool(editedTool: Tool) {
-    const toolToReplace = this.tools.find(tool => tool.toolId === editedTool.toolId);
+    const toolToReplace = this.tools.find(tool => tool._id === editedTool._id);
     Object.assign(toolToReplace, editedTool);
   }
 
   getToolName(toolId) {
-    return this.tools.find(tool => toolId === tool.toolId).toolName;
+    return this.tools.find(tool => toolId === tool._id).toolName;
   }
 
   getToolId(toolName) {
-    return this.tools.find(tool => toolName === tool.toolName).toolId;
+    return this.tools.find(tool => toolName === tool.toolName)._id;
   }
 }

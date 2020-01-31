@@ -8,14 +8,14 @@
       <app-user-reservations-table
         *ngIf="
           reservationService.getUserToolResos(
-            tool.toolId,
+            tool._id,
             userService.user.userId
           ).length != 0
         "
         [tool]="tool"
         [resos]="
           reservationService.getUserToolResos(
-            tool.toolId,
+            tool._id,
             userService.user.userId
           )
         "

@@ -50,7 +50,7 @@ export class UserReservationsComponent implements OnInit {
   hasReservations(tool: Tool) {
     return this.reservationService.hasReservation(
       this.user.userId,
-      tool.toolId
+      tool._id
     );
   }
 }

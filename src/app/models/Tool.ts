@@ -1,6 +1,7 @@
 export interface Tool {
-  toolId: number;
+  _id: any;
   toolName: string;
   toolDescription: string;
   userNeedsCert: boolean;
+  userMaxMonthlyReservations?: number;
 }
