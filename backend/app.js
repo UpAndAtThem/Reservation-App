@@ -52,15 +52,12 @@ app.post('/api/addTool', (req, res, next) => {
 app.get('/api/reservations/:userId', (req, res, next) => {
   Reservation.find({userId: req.params.userId})
     .then(dbReservations => {
-      console.log('db result', dbReservations);
       res.json({message: 'Reservations sent successfully' , reservations: dbReservations});
     });
 });
 
 app.post('/api/addReservation', (req, res, next) => {
   const reservationDB = new Reservation(req.body);
-
-  console.log(reservationDB, 'inside reservation post route');
   reservationDB.save();
   res.status(201).json({ message: 'Reservation added successfully'});
 });

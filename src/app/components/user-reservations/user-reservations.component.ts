@@ -19,7 +19,7 @@ export class UserReservationsComponent implements OnInit {
     public toolService: ToolsService
   ) {}
   reservations;
-  reservationSubscription: Subscription;
+
   tools: Tool[] = this.toolService.tools;
   toolSub: Subscription = this.toolService
     .getToolUpdateListener()
@@ -27,19 +27,20 @@ export class UserReservationsComponent implements OnInit {
       this.tools = tools;
     });
 
+  resoSub: Subscription = this.reservationService.getResoUpdateListener()
+    .subscribe(resos => {
+      this.reservations = resos;
+    });
+
   @Input() user;
 
   ngOnInit() {
-    this.getReservations();
     this.user = this.userService.getUser();
+    this.getReservations();
   }
 
   getReservations() {
-    this.reservationSubscription = this.reservationService
-      .getReservations(this.userService.user.userId)
-      .subscribe(value => {
-        this.reservations = value;
-      });
+    this.reservationService.getReservations(this.user.userId);
   }
 
   addReservation(form) {

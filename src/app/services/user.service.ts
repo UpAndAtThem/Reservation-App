@@ -10,7 +10,7 @@ export class UserService {
 
   user = {
     userType: 'Admin',
-    userId: 1,
+    userId: '1',
     name: 'Jason Nelson',
     email: 'jasonn318@gmail.com',
     phone: '555-2342',

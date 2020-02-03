@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Reservation } from '../models/Reservation';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservationService {
   constructor(private http: HttpClient) {}
+  private resosUpdated = new Subject<Reservation[]>();
+
   openTime = 8;
   closeTime = 21;
   milataryTimeToStandard = {
@@ -44,124 +47,54 @@ export class ReservationService {
   ];
 
   timeSlots = this.setTimeSlots();
-  reservations = [
-    {
-      _id: 1,
-      userId: 1,
-      toolId: '5e336f67a279a87c8a4e4e10',
-      reservationStartTime: new Date('January 17, 2020 12:00:00'),
-      reservationEndTime: new Date('January 17, 2020 13:00:00')
-    },
-    {
-      _id: 2,
-      userId: 1,
-      toolId: '5e336f67a279a87c8a4e4e10',
-      reservationStartTime: new Date('January 17, 2020 13:00:00'),
-      reservationEndTime: new Date('January 17, 2020 14:00:00')
-    },
-    {
-      _id: 3,
-      userId: 1,
-      toolId: '5e336f67a279a87c8a4e4e10',
-      reservationStartTime: new Date('January 18, 2020 19:00:00'),
-      reservationEndTime: new Date('January 18, 2020 20:00:00')
-    },
-    {
-      _id: 4,
-      userId: 1,
-      toolId: '5e336f67a279a87c8a4e4e10',
-      reservationStartTime: new Date('February 02, 2020 16:00:00'),
-      reservationEndTime: new Date('February 02, 2020 17:00:00')
-    },
-    {
-      _id: 5,
-      userId: 1,
-      toolId: '5e336db5a279a87c8a4e4e0f',
-      reservationStartTime: new Date('February 5, 2020 16:00:00'),
-      reservationEndTime: new Date('February 5, 2020 17:00:00')
-    },
-    {
-      _id: 6,
-      userId: 1,
-      toolId: '5e336db5a279a87c8a4e4e0f',
-      reservationStartTime: new Date('January 20, 2020 16:00:00'),
-      reservationEndTime: new Date('January 20, 2020 17:00:00')
-    },
-    {
-      _id: 7,
-      userId: 1,
-      toolId: '5e336db5a279a87c8a4e4e0f',
-      reservationStartTime: new Date('January 20, 2020 08:00:00'),
-      reservationEndTime: new Date('January 20, 2020 09:00:00')
-    },
-    {
-      _id: 8,
-      userId: 1,
-      toolId: '5e336d2fa279a87c8a4e4e0e',
-      reservationStartTime: new Date('January 31, 2020 11:00:00'),
-      reservationEndTime: new Date('January 31, 2020 12:00:00')
-    },
-    {
-      _id: 9,
-      userId: 1,
-      toolId: '5e336d2fa279a87c8a4e4e0e',
-      reservationStartTime: new Date('January 31, 2020 12:00:00'),
-      reservationEndTime: new Date('January 31, 2020 13:00:00')
-    },
-    {
-      _id: 10,
-      userId: 1,
-      toolId: '5e336d2fa279a87c8a4e4e0e',
-      reservationStartTime: new Date('January 31, 2020 08:00:00'),
-      reservationEndTime: new Date('January 31, 2020 09:00:00')
-    }
-  ];
-
+  reservations: any[];
   subscription: Observable<Array<any>>;
 
-  getReservations(userId): Observable<any> {
-    this.subscription = new Observable(observer => {
-      this.http
-        .get<{ message: string; reservations: Reservation[] }>(
-          `http://localhost:3000/api/reservations/${userId}`
-        )
-        .subscribe(resoData => {
-          console.log(
-            'retrieved reservations from the DB inside reservation service http get return',
-            resoData
-          );
-          const reservations = resoData.reservations;
-          console.log(reservations);
-          // this.reservations = reservations;
-          // this.toolsUpdated.next(tools);
+  getResoUpdateListener() {
+    return this.resosUpdated.asObservable();
+  }
+
+  getReservations(userId) {
+    this.http
+      .get<any>(`http://localhost:3000/api/reservations/${userId}`)
+      .pipe(
+        map(reservationData => {
+          return reservationData.reservations.map(reso => {
+            return {
+              reservationId: reso._id,
+              userId: reso.userId,
+              toolId: reso.toolId,
+              reservationStartTime: new Date(reso.reservationStartTime),
+              reservationEndTime: new Date(reso.reservationEndTime)
+            };
+          });
+        })
+      )
+      .subscribe(reservations => {
+        const userResos = reservations.filter(reso => {
+          return reso.userId === userId;
         });
-
-      const userResos = this.reservations.filter(reso => {
-        return reso.userId === userId;
+        this.reservations = userResos;
+        this.resosUpdated.next(this.reservations);
       });
-
-      observer.next(userResos);
-    });
-
-    return this.subscription;
   }
 
   addReservation(reso) {
-    console.log('inside reso service addReservation()', reso);
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
 
+    reso.reservationStartTime = reso.reservationStartTime.getTime();
+    reso.reservationEndTime = reso.reservationEndTime.getTime();
+
     this.http
       .post('http://localhost:3000/api/addReservation', reso, httpOptions)
       .subscribe(response => {
-        console.log('inside post response addReservation', response);
+        this.getReservations(reso.userId);
+        this.resosUpdated.next(this.reservations);
       });
-
-    this.reservations.push(reso);
   }
 
   getUserToolResos(toolId, userId) {
@@ -172,7 +105,6 @@ export class ReservationService {
 
   getToolResos(toolId, date) {
     return this.reservations.filter(reso => {
-      // tslint:disable-next-line: max-line-length
       return (
         reso.toolId === toolId &&
         reso.reservationStartTime.getFullYear() === date.getFullYear() &&
@@ -183,9 +115,9 @@ export class ReservationService {
   }
 
   deleteReso(reservation: Reservation) {
-    // this.reservations = this.reservations.filter(
-    //   // reso => reso.reservationId !== reservation.reservationId
-    // );
+    this.reservations = this.reservations.filter(
+      reso => reso.reservationId !== reservation.reservationId
+    );
   }
 
   hasReservation(userId, toolId) {
