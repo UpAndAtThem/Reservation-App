@@ -67,7 +67,6 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
     endReso.setHours(hour + 1);
 
     const newReso: Reservation = {
-      reservationId: this.reservationService.reservations.length + 1,
       userId: this.userId,
       toolId: this.toolId,
       reservationStartTime: startReso,

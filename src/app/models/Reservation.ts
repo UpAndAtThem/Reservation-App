@@ -1,5 +1,5 @@
 export interface Reservation {
-  reservationId: number;
+  reservationId?: string;
   userId: number;
   toolId: string;
   reservationStartTime: Date;

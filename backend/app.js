@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 const Tool = require('./models/tool');
+const Reservation = require('./models/reservation');
 
 mongoose
   .connect(
@@ -46,6 +47,22 @@ app.post('/api/addTool', (req, res, next) => {
 
   toolDB.save();
   res.status(201).json({ message: 'Tool added successfully' });
+});
+
+app.get('/api/reservations/:userId', (req, res, next) => {
+  Reservation.find({userId: req.params.userId})
+    .then(dbReservations => {
+      console.log('db result', dbReservations);
+      res.json({message: 'Reservations sent successfully' , reservations: dbReservations});
+    });
+});
+
+app.post('/api/addReservation', (req, res, next) => {
+  const reservationDB = new Reservation(req.body);
+
+  console.log(reservationDB, 'inside reservation post route');
+  reservationDB.save();
+  res.status(201).json({ message: 'Reservation added successfully'});
 });
 
 module.exports = app;
