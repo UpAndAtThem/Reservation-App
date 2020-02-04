@@ -14,7 +14,6 @@ export class ToolsService {
 
   getTools() {
     this.http.get<{message: string, tools: Tool[]}>('http://localhost:3000/api/tools').subscribe((toolData) => {
-      console.log('retrieved tools from the DB', toolData.tools);
       const tools = toolData.tools;
       this.tools = tools;
       this.toolsUpdated.next(tools);
@@ -33,9 +32,8 @@ export class ToolsService {
         'Content-Type':  'application/json'
       })
     };
-    console.log('inside post addTool outside promise');
+
     this.http.post('http://localhost:3000/api/addTool', tool, httpOptions).subscribe(() => {
-      console.log('inside post addTool');
       this.getTools();
     });
   }

@@ -62,6 +62,7 @@ import { ReservationDropdownDirective } from './directives/reservation-dropdown.
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './route-guards/auth-guard.service';
 import { AuthGuardAdmin } from './route-guards/auth-guard-admin.service';
+import { ResoResolver } from './models/ResoResolver';
 
 @NgModule({
   declarations: [
@@ -130,7 +131,8 @@ import { AuthGuardAdmin } from './route-guards/auth-guard-admin.service';
     CanActivateUsersHomeRouteGuard,
     AuthService,
     AuthGuard,
-    AuthGuardAdmin
+    AuthGuardAdmin,
+    ResoResolver
   ],
   bootstrap: [AppComponent]
 })

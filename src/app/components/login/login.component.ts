@@ -5,6 +5,7 @@ import { LoginService } from '../../services/login.service';
 import { UserService } from '../../services/user.service';
 import { GlobalEventsManagerService } from '../../services/global-events-manager.service';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     public userService: UserService,
     protected globalEventsManager: GlobalEventsManagerService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {}
@@ -26,7 +28,7 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       this.globalEventsManager.showNBar(true);
       this.authService.login();
-      this.loginService.router.navigate(['./user_home']);
+      this.router.navigate(['./user_home']);
     }, 800);
   }
 }
