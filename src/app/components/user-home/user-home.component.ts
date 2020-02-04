@@ -10,7 +10,7 @@ export class UserHomeComponent implements OnInit {
   constructor() {}
 
   user: User;
-  userId: number;
+  userId: string;
   userName: string;
   email: string;
   phone: string;
