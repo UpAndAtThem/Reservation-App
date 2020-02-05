@@ -8,6 +8,7 @@ import { UserReservationConfirmDeleteDialogComponent } from '../user-reservation
 import { UserEditReservationTimeSelectDialogComponent } from '../user-edit-reservation-time-select-dialog/user-edit-reservation-time-select-dialog.component';
 import { ToastrService } from 'ngx-toastr';
 import { formatDate } from '@angular/common';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-reservations-table',
@@ -29,6 +30,7 @@ export class UserReservationsTableComponent implements OnInit {
   constructor(
     protected toolsService: ToolsService,
     protected reservationService: ReservationService,
+    private userService: UserService,
     protected matDialog: MatDialog,
     private toastrService: ToastrService
   ) {}
@@ -45,7 +47,7 @@ export class UserReservationsTableComponent implements OnInit {
       const confirmed = res;
 
       if (confirmed) {
-        this.reservationService.deleteReso(reso);
+        this.reservationService.deleteReso(reso, this.userService.user.userId);
         this.toastrService.success(
           `${this.tool.toolName} ${formatDate(
             reso.reservationStartTime,

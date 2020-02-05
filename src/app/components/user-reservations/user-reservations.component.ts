@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 
 import { ReservationService } from '../../services/reservation.service';
 import { UserService } from '../../services/user.service';
@@ -7,6 +7,7 @@ import { ToolsService } from '../../services/tools.service';
 import { Tool } from '../../models/Tool';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Reservation } from 'src/app/models/Reservation';
 
 @Component({
   selector: 'app-user-reservations',
@@ -21,9 +22,12 @@ export class UserReservationsComponent implements OnInit {
     protected router: Router,
     private route: ActivatedRoute
   ) {}
-  reservations;
+
+  @Input() reservations: Reservation[];
+  @Input() user;
 
   tools: Tool[] = this.toolService.tools;
+
   toolSub: Subscription = this.toolService
     .getToolUpdateListener()
     .subscribe((tools: Tool[]) => {
@@ -35,11 +39,8 @@ export class UserReservationsComponent implements OnInit {
       this.reservations = resos;
     });
 
-  @Input() user;
-
   ngOnInit() {
     this.user = this.userService.getUser();
-    this.getReservations();
   }
 
   getReservations() {
@@ -51,10 +52,11 @@ export class UserReservationsComponent implements OnInit {
     this.reservationService.addReservation(reservation);
   }
 
-  hasReservations(tool: Tool) {
+  hasReservations(tool: Tool, reservations) {
     return this.reservationService.hasReservation(
       this.userService.user.userId,
-      tool._id
+      tool._id,
+      reservations
     );
   }
 }

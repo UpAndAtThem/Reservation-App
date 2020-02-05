@@ -10,7 +10,7 @@ const Reservation = require('./models/reservation');
 mongoose
   .connect(
     'mongodb+srv://Jason:7EWHpUQ8R4FtnMXk@m001-79uyp.mongodb.net/tools?retryWrites=true&w=majority',
-    { useNewUrlParser: true, useUnifiedTopology: true  }
+    { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(res => {
     console.log('\n\nconnected to mongoDB\n\n');
@@ -36,10 +36,9 @@ app.use((req, res, next) => {
 });
 
 app.get('/api/tools', (req, res, next) => {
-  Tool.find()
-    .then(dbTools => {
-      res.json({ message: 'Tools sent sucessfully', tools: dbTools});
-    });
+  Tool.find().then(dbTools => {
+    res.json({ message: 'Tools sent sucessfully', tools: dbTools });
+  });
 });
 
 app.post('/api/addTool', (req, res, next) => {
@@ -50,16 +49,27 @@ app.post('/api/addTool', (req, res, next) => {
 });
 
 app.get('/api/reservations/:userId', (req, res, next) => {
-  Reservation.find({userId: req.params.userId})
-    .then(dbReservations => {
-      res.json({message: 'Reservations sent successfully' , reservations: dbReservations});
+  Reservation.find({ userId: req.params.userId }).then(dbReservations => {
+    res.json({
+      message: 'Reservations sent successfully',
+      reservations: dbReservations
     });
+  });
 });
 
 app.post('/api/addReservation', (req, res, next) => {
   const reservationDB = new Reservation(req.body);
   reservationDB.save();
-  res.status(201).json({ message: 'Reservation added successfully'});
+  res.status(201).json({ message: 'Reservation added successfully' });
+});
+
+app.delete('/api/deleteReservation/:reservationId', (req, res, next) => {
+  console.log(req.params.reservationId);
+  Reservation.deleteOne({_id: req.params.reservationId}, (err) => {
+    console.log(err);
+  });
+
+  res.status(201).json({ message: 'Reservation deleted successfully'});
 });
 
 module.exports = app;

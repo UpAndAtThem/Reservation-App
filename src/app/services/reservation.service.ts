@@ -54,8 +54,8 @@ export class ReservationService {
     return this.resosUpdated.asObservable();
   }
 
-  getReservations(userId) {
-    this.http
+  getReservations(userId): Observable<Reservation[]> {
+    const resosObservable = this.http
       .get<any>(`http://localhost:3000/api/reservations/${userId}`)
       .pipe(
         map(reservationData => {
@@ -69,14 +69,17 @@ export class ReservationService {
             };
           });
         })
-      )
-      .subscribe(reservations => {
-        const userResos = reservations.filter(reso => {
-          return reso.userId === userId;
-        });
-        this.reservations = userResos;
-        this.resosUpdated.next(this.reservations);
+      );
+
+    resosObservable.subscribe(reservations => {
+      const userResos = reservations.filter(reso => {
+        return reso.userId === userId;
       });
+      this.reservations = userResos;
+      this.resosUpdated.next(this.reservations);
+    });
+
+    return resosObservable;
   }
 
   addReservation(reso) {
@@ -97,8 +100,8 @@ export class ReservationService {
       });
   }
 
-  getUserToolResos(toolId, userId) {
-    return this.reservations.filter(reso => {
+  getUserToolResos(toolId, userId, reservations) {
+    return reservations.filter(reso => {
       return reso.toolId === toolId && reso.userId === userId;
     });
   }
@@ -114,14 +117,26 @@ export class ReservationService {
     });
   }
 
-  deleteReso(reservation: Reservation) {
-    this.reservations = this.reservations.filter(
-      reso => reso.reservationId !== reservation.reservationId
-    );
+  deleteReso(reservation: Reservation, userId) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    this.http
+      .delete(
+        `http://localhost:3000/api/deleteReservation/${reservation.reservationId}`,
+        httpOptions
+      )
+      .subscribe(res => {
+        this.getReservations(userId);
+        this.resosUpdated.next(this.reservations);
+      });
   }
 
-  hasReservation(userId, toolId) {
-    return this.reservations.some(reso => {
+  hasReservation(userId, toolId, reservations) {
+    return reservations.some(reso => {
       return reso.userId === userId && reso.toolId === toolId;
     });
   }

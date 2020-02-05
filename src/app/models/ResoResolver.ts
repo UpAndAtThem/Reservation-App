@@ -21,6 +21,7 @@ export class ResoResolver implements Resolve<Reservation> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    // implement reservations
+    // this.reservationService.getReservations(this.userService.user.userId);
+    return this.reservationService.getReservations(this.userService.user.userId);
   }
 }

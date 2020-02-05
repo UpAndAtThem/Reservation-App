@@ -10,6 +10,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AdminConfigComponent } from './components/admin-config/admin-config.component';
 import { AuthGuard } from './route-guards/auth-guard.service';
 import { AuthGuardAdmin } from './route-guards/auth-guard-admin.service';
+import { ResoResolver } from './models/ResoResolver';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   {
     path: 'user_home',
     canActivate: [AuthGuard],
-    component: UserHomeComponent
+    component: UserHomeComponent,
+    resolve: {resos: ResoResolver}
   },
   {
     path: 'make_reservation',

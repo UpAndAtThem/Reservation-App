@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 
 import { LoginService } from '../../services/login.service';
 import { UserService } from '../../services/user.service';
-import { GlobalEventsManagerService } from '../../services/global-events-manager.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -16,7 +15,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     public userService: UserService,
-    protected globalEventsManager: GlobalEventsManagerService,
     private authService: AuthService,
     private router: Router
   ) {}
@@ -25,10 +23,8 @@ export class LoginComponent implements OnInit {
 
   onLoginSubmit(form: NgForm) {
     this.loginService.setUser();
-    setTimeout(() => {
-      this.globalEventsManager.showNBar(true);
-      this.authService.login();
-      this.router.navigate(['./user_home']);
-    }, 800);
+    this.userService.getUser();
+    this.authService.login();
+    this.router.navigate(['./user_home']);
   }
 }
