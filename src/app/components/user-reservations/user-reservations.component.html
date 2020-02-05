@@ -4,22 +4,24 @@
       <h2 class="mb-5 mt-5">{{ 'my reservations' | uppercase }}</h2>
     </div>
     <div *ngFor="let tool of tools" class="mb-5 tableContent">
-      <h4 #h4 *ngIf="hasReservations(tool)">{{ tool.toolName }}</h4>
-      <app-user-reservations-table
-        *ngIf="
-          reservationService.getUserToolResos(
-            tool._id,
-            userService.user.userId
-          ).length != 0
-        "
-        [tool]="tool"
-        [resos]="
-          reservationService.getUserToolResos(
-            tool._id,
-            userService.user.userId
-          )
-        "
-      ></app-user-reservations-table>
+      <div *ngIf="reservationService.reservations">
+        <h4 #h4 *ngIf="hasReservations(tool)">{{ tool.toolName }}</h4>
+        <app-user-reservations-table
+          *ngIf="
+            reservationService.getUserToolResos(
+              tool._id,
+              userService.user.userId
+            ).length != 0
+          "
+          [tool]="tool"
+          [resos]="
+            reservationService.getUserToolResos(
+              tool._id,
+              userService.user.userId
+            )
+          "
+        ></app-user-reservations-table>
+      </div>
     </div>
   </div>
 </div>

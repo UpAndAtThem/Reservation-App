@@ -6,6 +6,7 @@ import { ToolsService } from '../../services/tools.service';
 
 import { Tool } from '../../models/Tool';
 import { Subscription } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-reservations',
@@ -16,7 +17,9 @@ export class UserReservationsComponent implements OnInit {
   constructor(
     protected reservationService: ReservationService,
     protected userService: UserService,
-    public toolService: ToolsService
+    public toolService: ToolsService,
+    protected router: Router,
+    private route: ActivatedRoute
   ) {}
   reservations;
 
@@ -40,7 +43,7 @@ export class UserReservationsComponent implements OnInit {
   }
 
   getReservations() {
-    this.reservationService.getReservations(this.user.userId);
+    this.reservationService.getReservations(this.userService.user.userId);
   }
 
   addReservation(form) {
@@ -50,7 +53,7 @@ export class UserReservationsComponent implements OnInit {
 
   hasReservations(tool: Tool) {
     return this.reservationService.hasReservation(
-      this.user.userId,
+      this.userService.user.userId,
       tool._id
     );
   }
