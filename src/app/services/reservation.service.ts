@@ -95,8 +95,9 @@ export class ReservationService {
     this.http
       .post('http://localhost:3000/api/addReservation', reso, httpOptions)
       .subscribe(response => {
-        this.getReservations(reso.userId);
-        this.resosUpdated.next(this.reservations);
+        this.getReservations(reso.userId).subscribe((reservations) => {
+          this.resosUpdated.next(reservations);
+        });
       });
   }
 
@@ -115,6 +116,22 @@ export class ReservationService {
         reso.reservationStartTime.getDate() === date.getDate()
       );
     });
+  }
+
+  editReso(updatedReso, userId) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    this.http
+      .post('http://localhost:3000/api/editReso', updatedReso, httpOptions)
+      .subscribe(res => {
+        this.getReservations(userId).subscribe((reservations) => {
+          this.resosUpdated.next(reservations);
+        });
+      });
   }
 
   deleteReso(reservation: Reservation, userId) {

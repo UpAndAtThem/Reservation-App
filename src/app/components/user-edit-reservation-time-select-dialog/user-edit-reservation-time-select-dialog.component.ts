@@ -62,22 +62,16 @@ export class UserEditReservationTimeSelectDialogComponent implements OnInit {
     startReso.setHours(hour);
     endReso.setHours(hour + 1);
 
-    this.data.reservation.reservationStartTime = startReso;
-    this.data.reservation.reservationEndTime = endReso;
+    this.data.reservation.reservationStartTime = startReso.getTime();
+    this.data.reservation.reservationEndTime = endReso.getTime();
+
+    this.reservationService.editReso(this.data.reservation, this.userId);
 
     this.dialogRef.close();
     this.toastrService.success(
       `New Reservation: ${this.toolName} ${ formatDate(this.data.reservation.reservationStartTime, 'short', 'en-US')}`,
       'Reservation edited'
     );
-  }
-
-  time(dateObj) {
-    const timeOfDay = dateObj.getHours() >= 12 ? 'PM' : 'AM';
-    let hour = dateObj.getHours();
-    hour = hour > 12 ? hour - 12 : hour;
-    const min = dateObj.getMinutes();
-    return hour + ':' + min + ' ' + timeOfDay;
   }
 
   hasReservation(toolId, date, timeSlot) {

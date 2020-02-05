@@ -60,16 +60,24 @@ app.get('/api/reservations/:userId', (req, res, next) => {
 app.post('/api/addReservation', (req, res, next) => {
   const reservationDB = new Reservation(req.body);
   reservationDB.save();
+
   res.status(201).json({ message: 'Reservation added successfully' });
 });
 
 app.delete('/api/deleteReservation/:reservationId', (req, res, next) => {
-  console.log(req.params.reservationId);
   Reservation.deleteOne({_id: req.params.reservationId}, (err) => {
     console.log(err);
   });
 
   res.status(201).json({ message: 'Reservation deleted successfully'});
+});
+
+app.post('/api/editReso', (req, res, next) => {
+  Reservation.updateOne({_id: req.body.reservationId}, req.body, (err) => {
+    console.log('error obj', err);
+  });
+
+  res.status(201).json({ message: 'Reservation edited successfully' });
 });
 
 module.exports = app;
