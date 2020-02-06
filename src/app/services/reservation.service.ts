@@ -147,8 +147,9 @@ export class ReservationService {
         httpOptions
       )
       .subscribe(res => {
-        this.getReservations(userId);
-        this.resosUpdated.next(this.reservations);
+        this.getReservations(userId).subscribe((response) => {
+          this.resosUpdated.next(response);
+        });
       });
   }
 
