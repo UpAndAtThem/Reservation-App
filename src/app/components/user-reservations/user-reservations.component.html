@@ -1,28 +1,34 @@
-<div class="container-fluid" [ngClass]="{'no-resos': reservations.length === 0 }">
-  <div class="reservations">
-    <div class="myReso">
-      <h2 class="mb-5 mt-5">{{ 'my reservations' | uppercase }}</h2>
-    </div>
-    <div *ngFor="let tool of tools" class="mb-5 tableContent">
-      <div *ngIf="reservationService.reservations">
-        <h4 #h4 *ngIf="hasReservations(tool, reservations)">{{ tool.toolName }}</h4>
-        <app-user-reservations-table
-          *ngIf="
-            reservationService.getUserToolResos(
-              tool._id,
-              userService.user.userId,
-              reservations
-            ).length != 0
-          "
-          [tool]="tool"
-          [resos]="
-            reservationService.getUserToolResos(
-              tool._id,
-              userService.user.userId,
-              reservations
-            )
-          "
-        ></app-user-reservations-table>
+<div class="background" [ngClass]="{ 'no-resos': reservations.length === 0 }">
+  <div
+    class="container-fluid"
+  >
+    <div class="reservations">
+      <div class="myReso">
+        <h2 class="mb-5 mt-5">{{ 'my reservations' | uppercase }}</h2>
+      </div>
+      <div *ngFor="let tool of tools" class="mb-5 tableContent">
+        <div *ngIf="reservationService.reservations">
+          <h4 #h4 *ngIf="hasReservations(tool, reservations)">
+            {{ tool.toolName }}
+          </h4>
+          <app-user-reservations-table
+            *ngIf="
+              reservationService.getUserToolResos(
+                tool._id,
+                userService.user.userId,
+                reservations
+              ).length != 0
+            "
+            [tool]="tool"
+            [resos]="
+              reservationService.getUserToolResos(
+                tool._id,
+                userService.user.userId,
+                reservations
+              )
+            "
+          ></app-user-reservations-table>
+        </div>
       </div>
     </div>
   </div>

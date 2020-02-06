@@ -8,11 +8,14 @@
   display: block;
 }
 
-.container-fluid {
+.background {
   background: url(../../../assets/handyman-background.jpg) no-repeat center center fixed;
+  height: 100vh;
   background-size: cover;
-  height: 100%;
   width: 100% !important;
+}
+
+.container-fluid {
   overflow: hidden;
 }
 
