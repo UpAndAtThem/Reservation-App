@@ -1,6 +1,6 @@
 .mat-header-cell {
   text-align: center;
-  padding: 0;
+  padding: 8px 10px;
   color: white;
 }
 
@@ -18,7 +18,13 @@ mat-header-cell, mat-cell {
 }
 
 .mat-header-row {
-  background-color: rgb(196, 161, 121, 0.75);
+  background: url(../../../assets/wood-table-head.jpg);
+  opacity: 0.75;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  padding: 10px 15px !important;
 }
 
 .mat-row, .mat-header-row {

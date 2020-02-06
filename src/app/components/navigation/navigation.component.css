@@ -1,7 +1,21 @@
+nav {
+  background-image: linear-gradient(
+    rgb(69, 36, 13),
+    rgb(129, 85, 51),
+    rgb(114, 83, 50)
+  );
+  background-size: cover;
+  border-bottom: 0px;
+}
+
 .navbar {
-  background-color: rgb(86,62,48) !important;
+  background-color: rgb(135, 94, 52) !important;
   margin: 0px;
   border-radius: 0px;
+}
+
+a {
+  white-space: nowrap;
 }
 
 .nav-link.active {
@@ -15,4 +29,24 @@ a.nav-item.nav-link:hover {
 
 .navbar a {
   color: white;
+}
+
+@media only screen and (max-width: 767px) {
+  .plank {
+    background-image: none !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .plank {
+    background-image: url(../../../assets/nav-icon.png) !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 0px 15px;
+    width: 150%;
+    height: 30px;
+    display: flex;
+    justify-items: center;
+  }
 }

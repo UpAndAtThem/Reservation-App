@@ -1,14 +1,60 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light justify-content-start">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+<nav
+  class="navbar navbar-expand-md navbar-light bg-light justify-content-start"
+>
+  <button
+    #toggleBtn
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLinkActive="active" routerLink="user_home">Home <span class="sr-only"></span></a>
-      <a class="nav-item nav-link" routerLinkActive="active" routerLink="make_reservation">Make Reservation</a>
-      <a class="nav-item nav-link" routerLinkActive="active" routerLink="contact">Contact</a>
-      <a class="nav-item nav-link" routerLinkActive="active" routerLink="admin">Configure Tools</a>
-      <a class="nav-item nav-link" routerLinkActive="active" (click)='logout()'>Logout</a>
+      <div class='plank'>
+        <a
+          class="nav-item nav-link"
+          routerLinkActive="active"
+          routerLink="user_home"
+          >Home</a
+        >
+      </div>
+      <div class='plank'>
+        <a
+          class="nav-item nav-link"
+          routerLinkActive="active"
+          routerLink="make_reservation"
+          >Make Reservation</a
+        >
+      </div>
+      <div class='plank'>
+        <a
+          class="nav-item nav-link"
+          routerLinkActive="active"
+          routerLink="contact"
+          >Contact</a
+        >
+      </div>
+      <div class='plank'>
+        <a
+          class="nav-item nav-link"
+          routerLinkActive="active"
+          routerLink="admin"
+          >Configure Tools</a
+        >
+      </div>
+      <div class='plank'>
+        <a
+          class="nav-item nav-link"
+          routerLinkActive="active"
+          (click)="logout()"
+          >Logout</a
+        >
+      </div>
     </div>
   </div>
 </nav>
