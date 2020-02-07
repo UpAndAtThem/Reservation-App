@@ -48,6 +48,18 @@ app.post('/api/addTool', (req, res, next) => {
   res.status(201).json({ message: 'Tool added successfully' });
 });
 
+app.post('/api/updateTool', (req, res, next) => {
+  Tool.updateOne({_id: req.body._id}, req.body).then((res => {
+    res.status(201).json({ message: 'Tool updated successfully'});
+  }));
+});
+
+app.post('/api/deleteTool', (req, res, next) => {
+  Tool.deleteOne({_id: req.body._id}, (err) => {
+    res.status(201).json({ message: 'Tool Deleted successfully'});
+  });
+});
+
 app.get('/api/reservations/:userId', (req, res, next) => {
   Reservation.find({ userId: req.params.userId }).then(dbReservations => {
     res.json({

@@ -29,6 +29,6 @@ export class AdminEditToolInputDialogComponent implements OnInit {
     const tool = form.value;
 
     tool.toolId = this.toolId;
-    this.dialogRef.close(tool);
+    this.dialogRef.close({changes: tool, original: this.data.tool.tool});
   }
 }

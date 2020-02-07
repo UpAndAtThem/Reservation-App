@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./admin-edit-tool.component.css']
 })
 export class AdminEditToolComponent implements OnInit {
-  tools: Tool[] = this.toolService.tools;
+  tools: Tool[];
   toolSub: Subscription = this.toolService
     .getToolUpdateListener()
     .subscribe(toolData => {
@@ -19,11 +19,13 @@ export class AdminEditToolComponent implements OnInit {
     });
 
   constructor(
-    private toolService: ToolsService,
+    protected toolService: ToolsService,
     private editToolDialog: MatDialog
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.toolService.getTools();
+  }
 
   onToolEdit(form) {
     const dialogRef = this.editToolDialog.open(
@@ -34,9 +36,13 @@ export class AdminEditToolComponent implements OnInit {
       }
     );
 
-    dialogRef.afterClosed().subscribe(tool => {
-      if (!!tool) {
-        this.toolService.changeEditedTool(tool);
+    dialogRef.afterClosed().subscribe(toolData => {
+      if (!!toolData) {
+        toolData.original.toolName = toolData.changes.toolName;
+        toolData.original.toolDescription = toolData.changes.toolDescription;
+        toolData.original.userNeedsCert = toolData.changes.userNeedsCert;
+
+        this.toolService.changeEditedTool(toolData.original);
       }
     });
   }

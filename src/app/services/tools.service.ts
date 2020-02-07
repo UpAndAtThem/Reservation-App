@@ -15,6 +15,7 @@ export class ToolsService {
   getTools() {
     this.http.get<{message: string, tools: Tool[]}>('http://localhost:3000/api/tools').subscribe((toolData) => {
       const tools = toolData.tools;
+      console.log(tools);
       this.tools = tools;
       this.toolsUpdated.next(tools);
     });
@@ -39,12 +40,32 @@ export class ToolsService {
   }
 
   deleteTool(toolData: Tool) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+
+    this.http.post('http://localhost:3000/api/deleteTool', toolData, httpOptions).subscribe(res => {
+      console.log('deleted from after server', res);
+    });
+
     this.tools = this.tools.filter(existingTools => {
       return existingTools._id === toolData._id ? false : true;
     });
   }
 
   changeEditedTool(editedTool: Tool) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+
+    this.http.post('http://localhost:3000/api/updateTool', editedTool, httpOptions).subscribe((response) => {
+      console.log('this is the response', response);
+    });
+
     const toolToReplace = this.tools.find(tool => tool._id === editedTool._id);
     Object.assign(toolToReplace, editedTool);
   }

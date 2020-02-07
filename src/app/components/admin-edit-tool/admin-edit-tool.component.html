@@ -6,7 +6,7 @@
         <mat-form-field class='mb-4'>
           <mat-label>Select tool to edit</mat-label>
           <mat-select ngModel name="tool">
-            <mat-option *ngFor="let tool of tools" [value]="tool">
+            <mat-option *ngFor="let tool of toolService.tools" [value]="tool">
               {{ tool.toolName }}
             </mat-option>
           </mat-select>
