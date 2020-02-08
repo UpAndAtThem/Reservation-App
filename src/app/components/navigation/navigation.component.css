@@ -1,22 +1,12 @@
 nav {
-  /* background-image: linear-gradient(
-    rgb(69, 36, 13),
-    rgb(61, 34, 12),
-    rgb(114, 83, 50)
-  ); */
   background-color: rgb(95, 67, 48) !important;
   background-size: cover;
   border-bottom: 0px;
 }
 
 .navbar {
-  /* background-color: rgb(135, 94, 52) !important; */
   margin: 0px;
   border-radius: 0px;
-}
-
-.navbar-collapse {
-  padding-left: 0px;
 }
 
 a {

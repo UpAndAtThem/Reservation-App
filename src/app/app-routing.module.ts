@@ -26,7 +26,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: UserMakeReservationComponent
   },
-  { path: 'contact',  component: ContactComponent },
+  { path: 'contact', canActivate: [AuthGuard], component: ContactComponent },
   {
     path: 'admin',
     canActivate: [AuthGuard, AuthGuardAdmin],
