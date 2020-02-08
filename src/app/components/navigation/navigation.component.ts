@@ -15,6 +15,13 @@ export class NavigationComponent implements OnInit {
     private authService: AuthService
   ) {}
 
+  navBarItems: { name: string, path: string | null, clickMethod?: string }[] = [
+    { name: 'home', path: 'user_home' },
+    { name: 'make reservation', path: 'make_reservation' },
+    { name: 'contact', path: 'contact' },
+    { name: 'configure tools', path: 'admin'}
+  ];
+
   ngOnInit() {}
 
   logout() {

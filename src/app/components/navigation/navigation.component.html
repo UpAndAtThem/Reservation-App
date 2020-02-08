@@ -1,6 +1,7 @@
 <nav
   class="navbar navbar-expand-md navbar-light bg-light justify-content-start"
 >
+  <img src="../../../assets/log.png" alt="">
   <button
     #toggleBtn
     class="navbar-toggler"
@@ -15,44 +16,20 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <div class='plank'>
+      <div class='' *ngFor="let navItem of navBarItems">
         <a
           class="nav-item nav-link"
           routerLinkActive="active"
-          routerLink="user_home"
-          >Home</a
+          [routerLink]="navItem.path"
+          >{{ navItem.name | uppercase }}</a
         >
       </div>
-      <div class='plank'>
-        <a
-          class="nav-item nav-link"
-          routerLinkActive="active"
-          routerLink="make_reservation"
-          >Make Reservation</a
-        >
-      </div>
-      <div class='plank'>
-        <a
-          class="nav-item nav-link"
-          routerLinkActive="active"
-          routerLink="contact"
-          >Contact</a
-        >
-      </div>
-      <div class='plank'>
-        <a
-          class="nav-item nav-link"
-          routerLinkActive="active"
-          routerLink="admin"
-          >Configure Tools</a
-        >
-      </div>
-      <div class='plank'>
+      <div class=''>
         <a
           class="nav-item nav-link"
           routerLinkActive="active"
           (click)="logout()"
-          >Logout</a
+          >{{ 'Logout' | uppercase }}</a
         >
       </div>
     </div>

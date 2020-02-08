@@ -6,7 +6,7 @@
   width: 100%;
   margin: auto;
   margin-top: 10px;
-  background-color: rgb(255, 255, 255, 0.66) !important;
+  background-color: rgb(255, 255, 255, 0.86) !important;
 }
 
 mat-card-content {
@@ -21,6 +21,7 @@ mat-card-content {
 
 mat-card-title {
   text-align: center;
+  letter-spacing: 1.05rem;
 }
 
 .flex-center {
@@ -50,7 +51,7 @@ button.submit {
   display: flex;
   justify-content: center !important;
   align-items: center !important;
-  background: url(../../../assets/wood.jpg) center center fixed;
+  background: url(../../../assets/login-wood.jpeg) center center fixed;
   background-size: cover;
 }
 
