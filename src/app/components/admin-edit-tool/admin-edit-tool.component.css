@@ -17,6 +17,7 @@ mat-card {
 
 h3 {
   text-align: center;
+  color: rgb(113, 79, 76);
 }
 
 @media only screen and (max-width: 630px) {

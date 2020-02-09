@@ -59,7 +59,7 @@ label {
   color: rgb(113, 79, 76);
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 540px) {
   .contact-us {
     width: 90%;
   }

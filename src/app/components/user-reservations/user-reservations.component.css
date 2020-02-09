@@ -55,18 +55,7 @@ h2 {
 
 @media only screen and (min-width: 100px) {
   .tableContent {
-    width: 100% !important;
-    margin: auto;
-  }
-
-  .background {
-    background-position: 95% 0%;
-  }
-}
-
-@media only screen and (min-width: 650px) {
-  .tableContent {
-    width: 70% !important;
+    width: 100%;
     margin: auto;
   }
 
@@ -75,9 +64,20 @@ h2 {
   }
 }
 
-@media only screen and (min-width: 1049px) {
+@media only screen and (min-width: 650px) {
   .tableContent {
-    width: 53% !important;
+    width: 75%;
+    margin: auto;
+  }
+
+  .background {
+    background-position: 95% 0%;
+  }
+}
+
+@media only screen and (min-width: 1065px) {
+  .tableContent {
+    width: 53%;
     margin: auto;
   }
 
@@ -88,7 +88,29 @@ h2 {
 
 @media only screen and (min-width: 1320px) {
   .tableContent {
-    width: 43% !important;
+    width: 43%;
     margin: auto;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  h2 {
+    text-align: end;
+  }
+}
+
+@media only screen and (min-width: 650px) and (max-width: 1064px) {
+  h2 {
+    text-align: start;
+  }
+
+  .tableContent {
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .tableContent {
+    width: 100%;
   }
 }
