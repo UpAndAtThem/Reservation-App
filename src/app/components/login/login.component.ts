@@ -24,9 +24,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   onLoginSubmit(form: NgForm) {
-    this.loginService.setUser();
-    this.userService.getUser();
-    this.authService.login();
-    this.router.navigate(['./user_home']);
+    this.loginService.userLogin(form).subscribe(res => {
+      console.log(res);
+      this.loginService.setUser();
+      this.userService.getUser();
+      this.authService.login();
+      this.router.navigate(['./user_home']);
+    });
   }
 }
