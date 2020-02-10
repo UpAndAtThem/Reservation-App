@@ -56,7 +56,7 @@ export class ReservationService {
 
   getReservations(userId): Observable<Reservation[]> {
     const resosObservable = this.http
-      .get<any>(`http://localhost:3000/api/reservations/${userId}`)
+      .get<any>(`http://localhost:3000/api/reservation/reservations/${userId}`)
       .pipe(
         map(reservationData => {
           return reservationData.reservations.map(reso => {
@@ -93,7 +93,7 @@ export class ReservationService {
     reso.reservationEndTime = reso.reservationEndTime.getTime();
 
     this.http
-      .post('http://localhost:3000/api/addReservation', reso, httpOptions)
+      .post('http://localhost:3000/api/reservation/addReservation', reso, httpOptions)
       .subscribe(response => {
         this.getReservations(reso.userId).subscribe((reservations) => {
           this.resosUpdated.next(reservations);
@@ -126,7 +126,7 @@ export class ReservationService {
     };
 
     this.http
-      .post('http://localhost:3000/api/editReso', updatedReso, httpOptions)
+      .post('http://localhost:3000/api/reservation/editReso', updatedReso, httpOptions)
       .subscribe(res => {
         this.getReservations(userId).subscribe((reservations) => {
           this.resosUpdated.next(reservations);
@@ -143,7 +143,7 @@ export class ReservationService {
 
     this.http
       .delete(
-        `http://localhost:3000/api/deleteReservation/${reservation.reservationId}`,
+        `http://localhost:3000/api/reservation/deleteReservation/${reservation.reservationId}`,
         httpOptions
       )
       .subscribe(res => {

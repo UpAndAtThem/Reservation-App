@@ -13,7 +13,7 @@ export class ToolsService {
   constructor(private http: HttpClient) {}
 
   getTools() {
-    this.http.get<{message: string, tools: Tool[]}>('http://localhost:3000/api/tools').subscribe((toolData) => {
+    this.http.get<{message: string, tools: Tool[]}>('http://localhost:3000/api/tool/tools').subscribe((toolData) => {
       const tools = toolData.tools;
       console.log(tools);
       this.tools = tools;
@@ -34,7 +34,7 @@ export class ToolsService {
       })
     };
 
-    this.http.post('http://localhost:3000/api/addTool', tool, httpOptions).subscribe(() => {
+    this.http.post('http://localhost:3000/api/tool/addTool', tool, httpOptions).subscribe(() => {
       this.getTools();
     });
   }
@@ -46,7 +46,7 @@ export class ToolsService {
       })
     };
 
-    this.http.post('http://localhost:3000/api/deleteTool', toolData, httpOptions).subscribe(res => {
+    this.http.post('http://localhost:3000/api/tool/deleteTool', toolData, httpOptions).subscribe(res => {
       console.log('deleted from after server', res);
     });
 
@@ -62,7 +62,7 @@ export class ToolsService {
       })
     };
 
-    this.http.post('http://localhost:3000/api/updateTool', editedTool, httpOptions).subscribe((response) => {
+    this.http.post('http://localhost:3000/api/tool/updateTool', editedTool, httpOptions).subscribe((response) => {
       console.log('this is the response', response);
     });
 

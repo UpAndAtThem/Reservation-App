@@ -4,9 +4,13 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-const Tool = require('./models/tool');
-const Reservation = require('./models/reservation');
-const User = require('./models/user');
+// const Tool = require('./models/tool');
+// const Reservation = require('./models/reservation');
+// const User = require('./models/user');
+
+const reservationRoutes = require('./routes/reservation');
+const userRoutes = require('./routes/user');
+const toolRoutes = require('./routes/tool');
 
 mongoose
   .connect(
@@ -36,68 +40,72 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/api/addUser', (req, res, next) => {
-  userDB = new User(req.body);
-  userDB.save();
+app.use("/api/user", userRoutes);
+app.use("/api/tool", toolRoutes);
+app.use("/api/reservation", reservationRoutes);
 
-  res.status(201).json({ message: 'User added successfully'});
-});
+// app.post('/api/addUser', (req, res, next) => {
+//   userDB = new User(req.body);
+//   // userDB.save();
+//   console.log(req.body);
+//   res.status(201).json({ message: 'User added successfully'});
+// });
 
-app.get('/api/tools', (req, res, next) => {
-  Tool.find().then(dbTools => {
-    res.json({ message: 'Tools sent sucessfully', tools: dbTools });
-  });
-});
+// app.get('/api/tools', (req, res, next) => {
+//   Tool.find().then(dbTools => {
+//     res.json({ message: 'Tools sent sucessfully', tools: dbTools });
+//   });
+// });
 
-app.post('/api/addTool', (req, res, next) => {
-  const toolDB = new Tool(req.body);
+// app.post('/api/addTool', (req, res, next) => {
+//   const toolDB = new Tool(req.body);
 
-  toolDB.save();
-  res.status(201).json({ message: 'Tool added successfully' });
-});
+//   toolDB.save();
+//   res.status(201).json({ message: 'Tool added successfully' });
+// });
 
-app.post('/api/updateTool', (req, res, next) => {
-  Tool.updateOne({_id: req.body._id}, req.body).then((res => {
-    res.status(201).json({ message: 'Tool updated successfully'});
-  }));
-});
+// app.post('/api/updateTool', (req, res, next) => {
+//   Tool.updateOne({_id: req.body._id}, req.body).then((res => {
+//     res.status(201).json({ message: 'Tool updated successfully'});
+//   }));
+// });
 
-app.post('/api/deleteTool', (req, res, next) => {
-  Tool.deleteOne({_id: req.body._id}, (err) => {
-    res.status(201).json({ message: 'Tool Deleted successfully'});
-  });
-});
+// app.post('/api/deleteTool', (req, res, next) => {
+//   Tool.deleteOne({_id: req.body._id}, (err) => {
+//     res.status(201).json({ message: 'Tool Deleted successfully'});
+//   });
+// });
 
-app.get('/api/reservations/:userId', (req, res, next) => {
-  Reservation.find({ userId: req.params.userId }).then(dbReservations => {
-    res.json({
-      message: 'Reservations sent successfully',
-      reservations: dbReservations
-    });
-  });
-});
+// app.get('/api/reservations/:userId', (req, res, next) => {
+//   Reservation.find({ userId: req.params.userId }).then(dbReservations => {
+//     res.json({
+//       message: 'Reservations sent successfully',
+//       reservations: dbReservations
+//     });
+//   });
+// });
 
-app.post('/api/addReservation', (req, res, next) => {
-  const reservationDB = new Reservation(req.body);
-  reservationDB.save();
+// app.post('/api/addReservation', (req, res, next) => {
+//   const reservationDB = new Reservation(req.body);
+//   reservationDB.save();
 
-  res.status(201).json({ message: 'Reservation added successfully' });
-});
+//   res.status(201).json({ message: 'Reservation added successfully' });
+// });
 
-app.delete('/api/deleteReservation/:reservationId', (req, res, next) => {
-  Reservation.deleteOne({_id: req.params.reservationId}, (err) => {
-    console.log(err);
-  });
+// app.delete('/api/deleteReservation/:reservationId', (req, res, next) => {
+//   Reservation.deleteOne({_id: req.params.reservationId}, (err) => {
+//     console.log(err);
+//   });
 
-  res.status(201).json({ message: 'Reservation deleted successfully'});
-});
+//   res.status(201).json({ message: 'Reservation deleted successfully'});
+// });
 
-app.post('/api/editReso', (req, res, next) => {
-  Reservation.updateOne({_id: req.body.reservationId}, req.body, (err) => {
-    console.log('error obj', err);
-  });
+// app.post('/api/editReso', (req, res, next) => {
+//   Reservation.updateOne({_id: req.body.reservationId}, req.body, (err) => {
+//     console.log('error obj', err);
+//   });
 
-  res.status(201).json({ message: 'Reservation edited successfully' });
-});
+//   res.status(201).json({ message: 'Reservation edited successfully' });
+// });
 
 module.exports = app;

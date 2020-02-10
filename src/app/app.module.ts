@@ -64,6 +64,7 @@ import { AuthGuard } from './route-guards/auth-guard.service';
 import { AuthGuardAdmin } from './route-guards/auth-guard-admin.service';
 import { ResoResolver } from './models/ResoResolver';
 import { UserResolver } from './models/UserResolver';
+import { SignUpService } from './services/sign-up.service';
 
 @NgModule({
   declarations: [
@@ -129,6 +130,7 @@ import { UserResolver } from './models/UserResolver';
     ToolsService,
     GlobalEventsManagerService,
     SharingService,
+    SignUpService,
     CanActivateUsersHomeRouteGuard,
     AuthService,
     AuthGuard,
