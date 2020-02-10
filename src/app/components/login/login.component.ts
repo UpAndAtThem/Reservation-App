@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {}
 
+  signUpPath = 'sign_up';
+
   ngOnInit() {}
 
   onLoginSubmit(form: NgForm) {

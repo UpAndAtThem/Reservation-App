@@ -6,6 +6,7 @@ const app = express();
 
 const Tool = require('./models/tool');
 const Reservation = require('./models/reservation');
+const User = require('./models/user');
 
 mongoose
   .connect(
@@ -33,6 +34,13 @@ app.use((req, res, next) => {
     'GET, POST, PATCH, DELETE, OPTIONS'
   );
   next();
+});
+
+app.post('/api/addUser', (req, res, next) => {
+  userDB = new User(req.body);
+  userDB.save();
+
+  res.status(201).json({ message: 'User added successfully'});
 });
 
 app.get('/api/tools', (req, res, next) => {

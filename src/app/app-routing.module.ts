@@ -14,7 +14,7 @@ import { ResoResolver } from './models/ResoResolver';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'sign_up', canActivate: [AuthGuard], component: SignUpComponent },
+  { path: 'sign_up', component: SignUpComponent },
   {
     path: 'user_home',
     canActivate: [AuthGuard],

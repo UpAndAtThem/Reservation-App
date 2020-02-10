@@ -1,1 +1,80 @@
-<p>sign-up works!</p>
+<div class="background">
+  <div class="sign-up">
+    <mat-card>
+      <mat-card-title class="mb-5 j-center">{{
+        'Sign Up' | uppercase
+      }}</mat-card-title>
+      <mat-card-content>
+        <form #f="ngForm" (ngSubmit)="onSignUpSubmit(f.value); f.resetForm()" class="flex-col">
+          <mat-form-field>
+            <input
+              required
+              ngModel
+              #email="ngModel"
+              type="text"
+              matInput
+              placeholder="e-mail"
+              name="email"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              required
+              ngModel
+              #firstName="ngModel"
+              type="text"
+              matInput
+              placeholder="First Name"
+              name="name"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              required
+              ngModel
+              #lastName="ngModel"
+              type="text"
+              matInput
+              placeholder="Last Name"
+              name="name"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              required
+              ngModel
+              type="password"
+              matInput
+              placeholder="Password"
+              #password="ngModel"
+              name="password"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              required
+              ngModel
+              #confirmedPass="ngModel"
+              type="password"
+              matInput
+              placeholder="Confirm Password"
+              name="confirmedPass"
+            />
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="success"
+            type="submit"
+            class="submit mt-5"
+            [disabled]="f.form.invalid"
+          >
+            Submit
+          </button>
+        </form>
+        <a [routerLink]="['/login']" routerLinkActive="router-link-active"
+          >login</a
+        >
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

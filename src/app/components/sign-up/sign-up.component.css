@@ -1,0 +1,50 @@
+.background {
+  background: url(../../../assets/pencil.jpg) fixed center center no-repeat;
+  background-position: 25% 75%;
+  background-size: cover;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+}
+
+ a {
+   margin-top: 15px;
+   align-self: flex-end;
+}
+
+mat-card {
+  background: rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+mat-card-title {
+  color: rgb(76, 35, 35)
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.j-center {
+  text-align: center;
+  font-family: 'Muli';
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-up {
+  width: 450px;
+  margin: auto;
+}
