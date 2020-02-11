@@ -7,7 +7,7 @@
         <h2 class="mb-5 mt-5">{{ 'my reservations' | uppercase }}</h2>
       </div>
       <div *ngFor="let tool of tools" class="mb-5 tableContent">
-        <div *ngIf="reservationService.reservations">
+        <div *ngIf="reservations">
           <h4 #h4 *ngIf="hasReservations(tool, reservations)">
             {{ tool.toolName }}
           </h4>
@@ -15,7 +15,7 @@
             *ngIf="
               reservationService.getUserToolResos(
                 tool._id,
-                userService.user.userId,
+                userService.user._id,
                 reservations
               ).length != 0
             "
@@ -23,7 +23,7 @@
             [resos]="
               reservationService.getUserToolResos(
                 tool._id,
-                userService.user.userId,
+                userService.user._id,
                 reservations
               )
             "

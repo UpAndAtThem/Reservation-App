@@ -35,7 +35,7 @@ export class UserMakeReservationComponent implements OnInit {
   onReservationDateSubmit(form) {
     this.timeSelectDialog.open(UserMakeReservationTimeSelectDialogComponent, {
       data: {
-        userId: this.userService.user.userId,
+        userId: this.userService.user._id,
         toolId: this.toolsService.getToolId(form.tool),
         date: form.date,
         toolName: form.tool

@@ -15,7 +15,6 @@ export class ToolsService {
   getTools() {
     this.http.get<{message: string, tools: Tool[]}>('http://localhost:3000/api/tool/tools').subscribe((toolData) => {
       const tools = toolData.tools;
-      console.log(tools);
       this.tools = tools;
       this.toolsUpdated.next(tools);
     });

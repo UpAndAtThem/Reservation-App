@@ -36,10 +36,12 @@ export class UserEditReservationTimeSelectDialogComponent implements OnInit {
     this.toolId = this.data.reservation.toolId;
     this.userId = this.data.reservation.userId;
     this.reservationDate = this.data.reservation.reservationStartTime;
-    this.allReservedTimesDate = this.reservationService.getToolResos(
+    this.reservationService.getToolResos(
       this.toolId,
       this.reservationDate
-    );
+    ).subscribe((res: {message: string, reservations: Reservation[]}) => {
+      this.allReservedTimesDate = res.reservations;
+    });
 
     this.dialogRef.updateSize('450px');
   }
@@ -75,15 +77,15 @@ export class UserEditReservationTimeSelectDialogComponent implements OnInit {
   }
 
   hasReservation(toolId, date, timeSlot) {
-    const res = this.allReservedTimesDate.some(reso => {
-      const resoHour = reso.reservationStartTime.getHours();
+    const res = (this.allReservedTimesDate || []).some(reso => {
+      const resoHour = new Date(reso.reservationStartTime).getHours();
       const resoStdHour = this.reservationService.milataryTimeToStandard[
         resoHour
       ];
 
       return (
         parseInt(resoStdHour, 10) === parseInt(timeSlot.slice(0, 2), 10) &&
-        this.sameTimeOfDay(timeSlot, reso.reservationStartTime.getHours())
+        this.sameTimeOfDay(timeSlot, new Date(reso.reservationStartTime).getHours())
       );
     });
 

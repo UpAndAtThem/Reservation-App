@@ -12,19 +12,22 @@ export class LoginService {
 
   constructor(public router: Router, private http: HttpClient) {}
 
-  setUser() {
-    this.user = {
-      userId: '1',
-      name: 'Jason Nelson',
-      email: 'jasonn319@gmail.com',
-      phone: '555-454-3443',
-      isActive: true
-    };
-  }
+  // setUser(user) {
+  //   // console.log(user);
+  //   // this.user = {
+  //   //   userId: user._id,
+  //   //   name: `${user.firstName} ${user.lastName}`,
+  //   //   email: user.email,
+  //   //   phone: '555-454-3443',
+  //   //   isActive: true
+  //   // };
 
-  getUser() {
-    return this.user;
-  }
+  //   console.log(this.user);
+  // }
+
+  // getUser() {
+  //   return this.user;
+  // }
 
   userLogin(loginData): Observable<any> {
     const httpOptions = {
@@ -39,8 +42,6 @@ export class LoginService {
       email: user.email,
       password: user.password
     };
-
-    console.log('inside userLogin service', authData);
 
     return this.http.post('http://localhost:3000/api/user/getUser', authData, httpOptions);
   }

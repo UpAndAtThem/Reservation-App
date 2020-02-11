@@ -32,6 +32,7 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
   toolId;
   userId;
   reservationDate;
+  allToolResos;
 
   ngOnInit() {
     this.timeSlots = this.reservationService.getTimeSlots();
@@ -39,10 +40,12 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
     this.toolId = this.data.toolId;
     this.userId = this.data.userId;
     this.reservationDate = this.data.date;
-    this.allReservedTimesDate = this.reservationService.getToolResos(
+    this.reservationService.getToolResos(
       this.toolId,
       this.reservationDate
-    );
+    ).subscribe((resoData: {message: string, reservations: object}) => {
+      this.allToolResos = resoData.reservations;
+    });
 
     this.dialogRef.updateSize('450px');
   }
@@ -101,15 +104,16 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
   }
 
   hasReservation(toolId, date, timeSlot) {
-    const res = this.allReservedTimesDate.some(reso => {
-      const resoHour = reso.reservationStartTime.getHours();
+    const res = (this.allToolResos || []).some(reso => {
+      const resoMilitaryHour = new Date(reso.reservationStartTime).getHours();
+
       const resoStdHour = this.reservationService.milataryTimeToStandard[
-        resoHour
+        resoMilitaryHour
       ];
 
       return (
         parseInt(resoStdHour, 10) === parseInt(timeSlot.slice(0, 2), 10) &&
-        this.sameTimeOfDay(timeSlot, reso.reservationStartTime.getHours())
+        this.sameTimeOfDay(timeSlot, new Date(reso.reservationStartTime).getHours())
       );
     });
 

@@ -40,11 +40,12 @@ export class UserReservationsComponent implements OnInit {
     });
 
   ngOnInit() {
-    this.user = this.userService.getUser();
+    this.reservationService.getReservations(this.userService.user._id).subscribe(res => {
+    });
   }
 
   getReservations() {
-    this.reservationService.getReservations(this.userService.user.userId);
+    this.reservationService.getReservations(this.userService.user._id);
   }
 
   addReservation(form) {
@@ -54,7 +55,7 @@ export class UserReservationsComponent implements OnInit {
 
   hasReservations(tool: Tool, reservations) {
     return this.reservationService.hasReservation(
-      this.userService.user.userId,
+      this.userService.user._id,
       tool._id,
       reservations
     );

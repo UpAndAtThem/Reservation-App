@@ -3,12 +3,13 @@ import { Observable, Subject } from 'rxjs';
 import { Reservation } from '../models/Reservation';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservationService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService) {}
   private resosUpdated = new Subject<Reservation[]>();
 
   openTime = 8;
@@ -56,7 +57,7 @@ export class ReservationService {
 
   getReservations(userId): Observable<Reservation[]> {
     const resosObservable = this.http
-      .get<any>(`http://localhost:3000/api/reservation/reservations/${userId}`)
+      .get<any>(`http://localhost:3000/api/reservation/reservations/${this.userService.user._id}`)
       .pipe(
         map(reservationData => {
           return reservationData.reservations.map(reso => {
@@ -72,10 +73,11 @@ export class ReservationService {
       );
 
     resosObservable.subscribe(reservations => {
-      const userResos = reservations.filter(reso => {
-        return reso.userId === userId;
-      });
-      this.reservations = userResos;
+      // const userResos = reservations.filter(reso => {
+      //   return reso.userId !== userId;
+      // });
+
+      this.reservations = reservations;
       this.resosUpdated.next(this.reservations);
     });
 
@@ -107,15 +109,19 @@ export class ReservationService {
     });
   }
 
-  getToolResos(toolId, date) {
-    return this.reservations.filter(reso => {
-      return (
-        reso.toolId === toolId &&
-        reso.reservationStartTime.getFullYear() === date.getFullYear() &&
-        reso.reservationStartTime.getMonth() === date.getMonth() &&
-        reso.reservationStartTime.getDate() === date.getDate()
-      );
-    });
+  getToolResos(toolId, date): Observable<object> {
+    // console.log(`http://localhost:3000/api/reservation/reservations/${toolId}/${date}`);
+    console.log(`http://localhost:3000/api/reservation/reservations/${toolId}/${date.getTime()}`);
+    return this.http.get(`http://localhost:3000/api/reservation/reservations/${toolId}/${date.getTime()}`);
+
+    // return this.reservations.filter(reso => {
+    //   return (
+    //     reso.toolId === toolId &&
+    //     reso.reservationStartTime.getFullYear() === date.getFullYear() &&
+    //     reso.reservationStartTime.getMonth() === date.getMonth() &&
+    //     reso.reservationStartTime.getDate() === date.getDate()
+    //   );
+    // });
   }
 
   editReso(updatedReso, userId) {
@@ -147,7 +153,8 @@ export class ReservationService {
         httpOptions
       )
       .subscribe(res => {
-        this.getReservations(userId).subscribe((response) => {
+        this.getReservations(this.userService.user._id).subscribe((response) => {
+          this.reservations = response;
           this.resosUpdated.next(response);
         });
       });

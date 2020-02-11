@@ -9,17 +9,14 @@ export class UserService {
 
   constructor() {}
 
-  user = {
-    userType: 'Admin',
-    userId: '1',
-    name: 'Jason Nelson',
-    email: 'jasonn318@gmail.com',
-    phone: '555-2342',
-    isActive: true
-  };
+  user;
 
   getUser() {
     return this.user;
+  }
+
+  setUser(user) {
+    this.user = user;
   }
 
   isAdmin() {

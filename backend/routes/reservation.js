@@ -12,8 +12,25 @@ router.get('/reservations/:userId', (req, res, next) => {
   });
 });
 
+router.get('/reservations/:toolId/:reservationStart', (req, res, next) => {
+  let date = new Date(Number(req.params.reservationStart)).getDate();
+  let month = new Date(Number(req.params.reservationStart)).getMonth();
+
+  Reservation.find({toolId: req.params.toolId, date: date, month: month}).then(reservations => {
+    res.status(201).json({message: 'successful', reservations: reservations});
+  });
+
+});
+
 router.post('/addReservation', (req, res, next) => {
-  const reservationDB = new Reservation(req.body);
+  let reservation = req.body;
+
+  reservation.date = new Date(req.body.reservationStartTime).getDate();
+  reservation.month = new Date(req.body.reservationStartTime).getMonth();
+
+  console.log(reservation);
+
+  const reservationDB = new Reservation(reservation);
   reservationDB.save();
 
   res.status(201).json({ message: 'Reservation added successfully' });
