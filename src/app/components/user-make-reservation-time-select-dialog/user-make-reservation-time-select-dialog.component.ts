@@ -92,13 +92,28 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
       confirmed = res;
 
       if (confirmed) {
-        this.reservationService.addReservation(newReso);
-        this.toastrService.success(
-          formatDate(newReso.reservationStartTime, 'short', 'en-US'),
-          `${this.toolName} Reservation added:`
-        );
-        this.router.navigate(['user_home']);
-        this.dialogRef.close();
+        this.reservationService.addReservation(newReso).subscribe((response: {status: string, message: string}) => {
+          console.log(response);
+
+          if (response.status === '201') {
+            this.toastrService.success(
+              formatDate(newReso.reservationStartTime, 'short', 'en-US'),
+              `${this.toolName} Reservation added:`
+            );
+
+            this.router.navigate(['user_home']);
+            this.dialogRef.close();
+
+            this.reservationService.getReservations(this.userId).subscribe(reservations => {
+              this.reservationService.resosUpdated.next(reservations);
+            });
+          } else {
+            this.toastrService.error(
+              formatDate(newReso.reservationStartTime, 'short', 'en-US'),
+              `${this.toolName} Reservation failed`
+            );
+          }
+        });
       }
     });
   }

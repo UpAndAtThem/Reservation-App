@@ -4,10 +4,10 @@
   >
     <div class="reservations">
       <div class="myReso">
-        <h2 class="mb-5 mt-5">{{ 'my reservations' | uppercase }}</h2>
+        <h2 class="mb-5 mt-5">{{ userService.user.firstName + '\'s Reservations' | uppercase }}</h2>
       </div>
       <div *ngFor="let tool of tools" class="mb-5 tableContent">
-        <div *ngIf="reservations">
+        <div *ngIf="reservationService.reservations">
           <h4 #h4 *ngIf="hasReservations(tool, reservations)">
             {{ tool.toolName }}
           </h4>

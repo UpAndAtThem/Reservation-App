@@ -28,12 +28,15 @@ router.post('/addReservation', (req, res, next) => {
   reservation.date = new Date(req.body.reservationStartTime).getDate();
   reservation.month = new Date(req.body.reservationStartTime).getMonth();
 
-  console.log(reservation);
-
   const reservationDB = new Reservation(reservation);
-  reservationDB.save();
 
-  res.status(201).json({ message: 'Reservation added successfully' });
+  reservationDB.save(err => {
+    if (err) {
+      res.status(201).json({ status: '404', message: err.message });
+    } else {
+      res.status(201).json({ status: '201', message: 'Reservation added successfully' });
+    }
+  });
 });
 
 router.delete('/deleteReservation/:reservationId', (req, res, next) => {
