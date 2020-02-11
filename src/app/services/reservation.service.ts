@@ -124,17 +124,12 @@ export class ReservationService {
       })
     };
 
-    this.http
+    return this.http
       .post(
         'http://localhost:3000/api/reservation/editReso',
         updatedReso,
         httpOptions
-      )
-      .subscribe(res => {
-        this.getReservations(userId).subscribe(reservations => {
-          this.resosUpdated.next(reservations);
-        });
-      });
+      );
   }
 
   deleteReso(reservation: Reservation, userId) {

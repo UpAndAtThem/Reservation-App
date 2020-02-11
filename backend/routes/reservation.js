@@ -50,9 +50,13 @@ router.delete('/deleteReservation/:reservationId', (req, res, next) => {
 router.post('/editReso', (req, res, next) => {
   Reservation.updateOne({_id: req.body.reservationId}, req.body, (err) => {
     console.log('error obj', err);
-  });
 
-  res.status(201).json({ message: 'Reservation edited successfully' });
+    if (err) {
+      res.status(201).json({ status: '401', message: 'Reservation edit Failed'});
+    } else {
+      res.status(201).json({ status: '201', message: 'Reservation edited successfully' });
+    }
+  });
 });
 
 module.exports = router;

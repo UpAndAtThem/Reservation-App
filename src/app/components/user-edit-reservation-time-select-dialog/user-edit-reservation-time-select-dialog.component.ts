@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { formatDate } from '@angular/common';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-edit-reservation-time-select-dialog',
@@ -20,7 +21,8 @@ export class UserEditReservationTimeSelectDialogComponent implements OnInit {
     >,
     private confirmResoDialog: MatDialog,
     private router: Router,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private userService: UserService
   ) {}
 
   timeSlots;
@@ -36,12 +38,11 @@ export class UserEditReservationTimeSelectDialogComponent implements OnInit {
     this.toolId = this.data.reservation.toolId;
     this.userId = this.data.reservation.userId;
     this.reservationDate = this.data.reservation.reservationStartTime;
-    this.reservationService.getToolResos(
-      this.toolId,
-      this.reservationDate
-    ).subscribe((res: {message: string, reservations: Reservation[]}) => {
-      this.allReservedTimesDate = res.reservations;
-    });
+    this.reservationService
+      .getToolResos(this.toolId, this.reservationDate)
+      .subscribe((res: { message: string; reservations: Reservation[] }) => {
+        this.allReservedTimesDate = res.reservations;
+      });
 
     this.dialogRef.updateSize('450px');
   }
@@ -67,13 +68,38 @@ export class UserEditReservationTimeSelectDialogComponent implements OnInit {
     this.data.reservation.reservationStartTime = startReso.getTime();
     this.data.reservation.reservationEndTime = endReso.getTime();
 
-    this.reservationService.editReso(this.data.reservation, this.userId);
+    this.reservationService
+      .editReso(this.data.reservation, this.userId)
+      .subscribe((res: {message: string, status: string}) => {
+        console.log(res);
 
-    this.dialogRef.close();
-    this.toastrService.success(
-      `New Reservation: ${this.toolName} ${ formatDate(this.data.reservation.reservationStartTime, 'short', 'en-US')}`,
-      'Reservation edited'
-    );
+        this.reservationService
+        .getReservations(this.userService.user.userId)
+        .subscribe(reservations => {
+          this.reservationService.resosUpdated.next(reservations);
+        });
+
+        if (res.status === '201') {
+          this.dialogRef.close();
+          this.toastrService.success(
+            `New Reservation: ${this.toolName} ${formatDate(
+              this.data.reservation.reservationStartTime,
+              'short',
+              'en-US'
+            )}`,
+            'Reservation Edited Sucessfully'
+          );
+        } else {
+          this.toastrService.error(
+            `New Reservation: ${this.toolName} ${formatDate(
+              this.data.reservation.reservationStartTime,
+              'short',
+              'en-US'
+            )}`,
+            'Reservation Edit Failed'
+          );
+        }
+      });
   }
 
   hasReservation(toolId, date, timeSlot) {
@@ -85,7 +111,10 @@ export class UserEditReservationTimeSelectDialogComponent implements OnInit {
 
       return (
         parseInt(resoStdHour, 10) === parseInt(timeSlot.slice(0, 2), 10) &&
-        this.sameTimeOfDay(timeSlot, new Date(reso.reservationStartTime).getHours())
+        this.sameTimeOfDay(
+          timeSlot,
+          new Date(reso.reservationStartTime).getHours()
+        )
       );
     });
 

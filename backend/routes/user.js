@@ -26,7 +26,13 @@ router.post('/addUser', (req, res, next) => {
 
 router.post('/getUser', (req, res, next) => {
   User.findOne({email: req.body.email}).then((user) => {
-    res.status(200).json({message: 'Got User successfully', user: user});
+    if(user) {
+      res.status(200).json({status: '200', message: 'Got User successfully', user: user});
+    } else {
+      res.status(201).json({status: '401', message: 'Auth Failed'});
+    }
+  }).catch((err) => {
+    console.log(err);
   });
 });
 
