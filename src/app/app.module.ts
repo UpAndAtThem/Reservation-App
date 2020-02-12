@@ -56,7 +56,7 @@ import { AdminAddToolConfirmDialogComponent } from './components/admin-add-tool-
 import { AdminEditToolInputDialogComponent } from './components/admin-edit-tool-input-dialog/admin-edit-tool-input-dialog.component';
 // tslint:disable-next-line: max-line-length
 import { AdminDeleteToolConfirmDialogComponent } from './components/admin-delete-tool-confirm-dialog/admin-delete-tool-confirm-dialog.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReservationHighlightDirective } from './directives/reservation-highlight.directive';
 import { ReservationDropdownDirective } from './directives/reservation-dropdown.directive';
 import { AuthService } from './services/auth.service';
@@ -65,6 +65,8 @@ import { AuthGuardAdmin } from './route-guards/auth-guard-admin.service';
 import { ResoResolver } from './models/ResoResolver';
 import { UserResolver } from './models/UserResolver';
 import { SignUpService } from './services/sign-up.service';
+
+import { AuthInterceptor } from './helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -124,6 +126,7 @@ import { SignUpService } from './services/sign-up.service';
     HttpClientModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     LoginService,
     UserService,
     ReservationService,

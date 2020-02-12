@@ -2,15 +2,24 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/User';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { of, Observable } from 'rxjs';
+import { of, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  user: User;
+  user;
+  token: string;
+  userUpdated: Subject<any>;
 
-  constructor(public router: Router, private http: HttpClient) {}
+  constructor(
+    public router: Router,
+    private http: HttpClient
+  ) {}
+
+  setToken(token) {
+    this.token = token;
+  }
 
   // setUser(user) {
   //   // console.log(user);
@@ -32,18 +41,38 @@ export class LoginService {
   userLogin(loginData): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json'
+        'Content-Type': 'application/json'
       })
     };
 
     const user = loginData.value;
+    this.userUpdated = new Subject<User>();
 
     const authData = {
       email: user.email,
       password: user.password
     };
 
-    return this.http.post('http://localhost:3000/api/user/getUser', authData, httpOptions);
+    const postObservable = this.http.post(
+      'http://localhost:3000/api/user/getUser',
+      authData,
+      httpOptions
+    );
+
+    postObservable.subscribe(
+      (res: {
+        status: string;
+        message: string;
+        user: object;
+        token: string;
+      }) => {
+        this.user = res.user;
+        const token = res.token;
+        this.setToken(token);
+      }
+    );
+
+    return postObservable;
   }
 
   isUserAuthenticated() {
