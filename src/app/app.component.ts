@@ -34,6 +34,5 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.globalEventsManager.showNBar(false);
-    this.toolService.getTools();
   }
 }

@@ -31,8 +31,9 @@ router.post('/addUser', (req, res, next) => {
         res.status(201).json({ message: 'User added successfully' });
       })
       .catch(err => {
+        res.status(401).json({message: 'Something went wrong', err: err.message});
         console.log('Error');
-        console.log(err);
+        console.log(err.message, '\n\n');
       });
   });
 });
@@ -59,7 +60,8 @@ router.post('/getUser', (req, res, next) => {
                 token: token
               });
             }
-            res.status(201).json({ status: '401', message: 'Auth Failed', jwt: token });
+            console.log('login failed');
+            res.status(401).json({ status: '401', message: 'Auth Failed', jwt: token });
           })
           .catch(err => {
             console.log('\n\nError\n\n', err);

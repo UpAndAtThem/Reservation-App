@@ -4,41 +4,26 @@ import { User } from '../models/User';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { of, Observable, Subject } from 'rxjs';
 import { UserService } from './user.service';
+import { SharingService } from './sharing.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   user;
-  token: string;
+  token: string = localStorage.getItem('token');
   userUpdated: Subject<any>;
 
   constructor(
     public router: Router,
     private http: HttpClient,
-    private userService: UserService
+    private userService: UserService,
+    private sharingService: SharingService
   ) {}
 
   setToken(token) {
     this.token = token;
   }
-
-  // setUser(user) {
-  //   // console.log(user);
-  //   // this.user = {
-  //   //   userId: user._id,
-  //   //   name: `${user.firstName} ${user.lastName}`,
-  //   //   email: user.email,
-  //   //   phone: '555-454-3443',
-  //   //   isActive: true
-  //   // };
-
-  //   console.log(this.user);
-  // }
-
-  // getUser() {
-  //   return this.user;
-  // }
 
   userLogin(loginData): Observable<any> {
     const httpOptions = {
@@ -47,12 +32,12 @@ export class LoginService {
       })
     };
 
-    const user = loginData.value;
+    const userData = loginData.value;
     this.userUpdated = new Subject<User>();
 
     const authData = {
-      email: user.email,
-      password: user.password
+      email: userData.email,
+      password: userData.password
     };
 
     const postObservable = this.http.post(
@@ -69,9 +54,14 @@ export class LoginService {
         token: string;
       }) => {
         this.user = res.user;
+        this.sharingService.setGenSettings(res.token, 'token');
+        this.sharingService.setGenSettings(res.user, 'user');
         this.userService.setUser(res.user);
         const token = res.token;
         this.setToken(token);
+      },
+      (err) => {
+        console.log('\n\n\ngetUserError error: ', err, '\n\n\n');
       }
     );
 

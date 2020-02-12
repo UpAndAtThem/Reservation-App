@@ -2,8 +2,9 @@ const express = require('express');
 const Reservation = require('../models/reservation');
 
 const router = express.Router();
+const checkAuth = require('../middleware/check-auth');
 
-router.get('/reservations/:userId', (req, res, next) => {
+router.get('/reservations/:userId', checkAuth, (req, res, next) => {
   Reservation.find({ userId: req.params.userId }).then(dbReservations => {
     res.json({
       message: 'Reservations sent successfully',
@@ -12,7 +13,7 @@ router.get('/reservations/:userId', (req, res, next) => {
   });
 });
 
-router.get('/reservations/:toolId/:reservationStart', (req, res, next) => {
+router.get('/reservations/:toolId/:reservationStart', checkAuth, (req, res, next) => {
   let date = new Date(Number(req.params.reservationStart)).getDate();
   let month = new Date(Number(req.params.reservationStart)).getMonth();
 
@@ -22,7 +23,7 @@ router.get('/reservations/:toolId/:reservationStart', (req, res, next) => {
 
 });
 
-router.post('/addReservation', (req, res, next) => {
+router.post('/addReservation', checkAuth, (req, res, next) => {
   let reservation = req.body;
 
   reservation.date = new Date(req.body.reservationStartTime).getDate();
@@ -39,7 +40,7 @@ router.post('/addReservation', (req, res, next) => {
   });
 });
 
-router.delete('/deleteReservation/:reservationId', (req, res, next) => {
+router.delete('/deleteReservation/:reservationId', checkAuth, (req, res, next) => {
   Reservation.deleteOne({_id: req.params.reservationId}, (err) => {
     console.log(err);
   });
@@ -47,7 +48,7 @@ router.delete('/deleteReservation/:reservationId', (req, res, next) => {
   res.status(201).json({ message: 'Reservation deleted successfully'});
 });
 
-router.post('/editReso', (req, res, next) => {
+router.post('/editReso', checkAuth, (req, res, next) => {
   Reservation.updateOne({_id: req.body.reservationId}, req.body, (err) => {
     console.log('error obj', err);
 

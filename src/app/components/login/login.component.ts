@@ -5,6 +5,8 @@ import { LoginService } from '../../services/login.service';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ToolsService } from 'src/app/services/tools.service';
+import { SharingService } from 'src/app/services/sharing.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,9 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     public userService: UserService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toolService: ToolsService,
+    private sharingService: SharingService
   ) {}
 
   signUpPath = 'sign_up';
@@ -24,6 +28,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   onLoginSubmit(form: NgForm) {
+    this.toolService.getTools();
     this.loginService.userLogin(form).subscribe((res) => {
       if (res.status === '201') {
         this.userService.setUser(res.user);
