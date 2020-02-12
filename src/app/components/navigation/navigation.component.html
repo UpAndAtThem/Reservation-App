@@ -21,6 +21,7 @@
           class="nav-item nav-link"
           routerLinkActive="active"
           [routerLink]="navItem.path"
+          [hidden]="(navItem.auth === 'admin' && !userService.user.isAdmin)"
           >{{ navItem.name | uppercase }}</a
         >
       </div>

@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
 
   onLoginSubmit(form: NgForm) {
     this.loginService.userLogin(form).subscribe((res) => {
-      console.log(this.loginService.token);
       if (res.status === '201') {
         this.userService.setUser(res.user);
         this.authService.login();

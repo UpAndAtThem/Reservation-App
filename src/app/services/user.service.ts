@@ -21,7 +21,7 @@ export class UserService {
 
   isAdmin() {
     const promise = new Promise(res => {
-      if (this.user.userType === 'Admin') {
+      if (this.user.isAdmin) {
         res(true);
       } else {
         res(false);

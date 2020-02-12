@@ -40,13 +40,13 @@ export class UserReservationsComponent implements OnInit {
     });
 
   ngOnInit() {
-    this.reservationService.getReservations(this.userService.user._id).subscribe(res => {
-    });
+    // this.reservationService.getReservations(this.userService.user._id).subscribe(res => {
+    // });
   }
 
-  getReservations() {
-    this.reservationService.getReservations(this.userService.user._id);
-  }
+  // getReservations() {
+  //   this.reservationService.getReservations(this.userService.user._id);
+  // }
 
   addReservation(form) {
     const reservation = form;

@@ -9,12 +9,13 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private loginService: LoginService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // add authorization header with basic auth credentials if available
-        console.log('inside auth interceptor');
         const currentUser = this.loginService.user;
-        console.log('currentUser:', currentUser);
+
         if (currentUser && this.loginService.token) {
-            console.log('inside clone block');
+            console.log('inside auth.interceptor');
+            console.log('currentUser: ', currentUser);
+            console.log('token: ', this.loginService.token);
+
             request = request.clone({
                 setHeaders: {
                     Authorization: `Basic ${this.loginService.token}`

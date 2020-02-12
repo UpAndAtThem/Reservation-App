@@ -9,6 +9,8 @@ export class SignUpService {
   constructor(private http: HttpClient) { }
 
   signUpUser(user) {
+    user.isAdmin = false;
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'

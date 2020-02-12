@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from '../models/User';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { of, Observable, Subject } from 'rxjs';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class LoginService {
 
   constructor(
     public router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private userService: UserService
   ) {}
 
   setToken(token) {
@@ -67,6 +69,7 @@ export class LoginService {
         token: string;
       }) => {
         this.user = res.user;
+        this.userService.setUser(res.user);
         const token = res.token;
         this.setToken(token);
       }
