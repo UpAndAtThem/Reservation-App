@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   onLoginSubmit(form: NgForm) {
-    console.log('inside onLogin');
     this.loginService.userLogin(form).subscribe((res) => {
       console.log(res);
       if (res.status === '201') {
