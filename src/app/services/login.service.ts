@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/User';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { of, Observable, Subject } from 'rxjs';
+import { of, Observable, Subject, Subscription } from 'rxjs';
 import { UserService } from './user.service';
 import { SharingService } from './sharing.service';
 
@@ -12,6 +12,8 @@ import { SharingService } from './sharing.service';
 export class LoginService {
   user;
   token: string = localStorage.getItem('token');
+  authStatusListener = new Subject<boolean>();
+  isAuthorized: boolean;
   userUpdated: Subject<any>;
 
   constructor(
@@ -21,8 +23,16 @@ export class LoginService {
     private sharingService: SharingService
   ) {}
 
+  tokenUpdateSubscription: Subscription = this.getAuthStatusListener().subscribe((boolRes) => {
+    this.isAuthorized = boolRes;
+  });
+
   setToken(token) {
     this.token = token;
+  }
+
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
   }
 
   userLogin(loginData): Observable<any> {
@@ -58,6 +68,9 @@ export class LoginService {
         this.sharingService.setGenSettings(res.user, 'user');
         this.userService.setUser(res.user);
         const token = res.token;
+
+        this.authStatusListener.next(!!token);
+
         this.setToken(token);
       },
       (err) => {

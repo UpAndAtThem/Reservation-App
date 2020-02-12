@@ -8,6 +8,7 @@ import { Tool } from '../../models/Tool';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Reservation } from 'src/app/models/Reservation';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-user-reservations',
@@ -19,8 +20,7 @@ export class UserReservationsComponent implements OnInit {
     protected reservationService: ReservationService,
     protected userService: UserService,
     public toolService: ToolsService,
-    protected router: Router,
-    private route: ActivatedRoute
+    protected router: Router
   ) {}
 
   @Input() reservations: Reservation[];
@@ -40,17 +40,6 @@ export class UserReservationsComponent implements OnInit {
     });
 
   ngOnInit() {
-    // this.reservationService.getReservations(this.userService.user._id).subscribe(res => {
-    // });
-  }
-
-  // getReservations() {
-  //   this.reservationService.getReservations(this.userService.user._id);
-  // }
-
-  addReservation(form) {
-    const reservation = form;
-    this.reservationService.addReservation(reservation);
   }
 
   hasReservations(tool: Tool, reservations) {
