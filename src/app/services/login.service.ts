@@ -61,7 +61,6 @@ export class LoginService {
         user: object;
         token: string;
       }) => {
-        console.log('disdata', data);
         this.user = data.user;
         this.sharingService.setGenSettings(data.token, 'token');
         this.sharingService.setGenSettings(data.user, 'user');

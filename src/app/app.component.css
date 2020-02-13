@@ -17,3 +17,11 @@
  /*change color of underline when focused*/
  background-color: rgba(168, 101, 61, 0.993) !important;
 }
+
+::ng-deep .mat-select-arrow {
+  color: rgb(156, 135, 107) !important;
+}
+
+input:focus ~ label.ee .change-color {
+  color: #00dd22;
+}
