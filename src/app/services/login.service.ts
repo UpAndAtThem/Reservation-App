@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from '../models/User';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { of, Observable, Subject, Subscription } from 'rxjs';
+import { tap, map, share } from 'rxjs/operators';
 import { UserService } from './user.service';
 import { SharingService } from './sharing.service';
 
@@ -43,7 +44,6 @@ export class LoginService {
     };
 
     const userData = loginData.value;
-    this.userUpdated = new Subject<User>();
 
     const authData = {
       email: userData.email,
@@ -54,28 +54,25 @@ export class LoginService {
       'http://localhost:3000/api/user/getUser',
       authData,
       httpOptions
-    );
-
-    postObservable.subscribe(
-      (res: {
+    ).pipe(
+      tap((data: {
         status: string;
         message: string;
         user: object;
         token: string;
       }) => {
-        this.user = res.user;
-        this.sharingService.setGenSettings(res.token, 'token');
-        this.sharingService.setGenSettings(res.user, 'user');
-        this.userService.setUser(res.user);
-        const token = res.token;
+        console.log('disdata', data);
+        this.user = data.user;
+        this.sharingService.setGenSettings(data.token, 'token');
+        this.sharingService.setGenSettings(data.user, 'user');
+        this.userService.setUser(data.user);
+        const token = data.token;
 
         this.authStatusListener.next(!!token);
 
         this.setToken(token);
-      },
-      (err) => {
-        console.log('\n\n\ngetUserError error: ', err, '\n\n\n');
-      }
+      }),
+      share()
     );
 
     return postObservable;

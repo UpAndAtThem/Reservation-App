@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { share, tap } from 'rxjs/operators';
 import { Reservation } from '../models/Reservation';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -61,6 +62,10 @@ export class ReservationService {
         `http://localhost:3000/api/reservation/reservations/${this.userService.user._id}`
       )
       .pipe(
+        tap((reservationData) => {
+          this.reservations = reservationData.reservations;
+          this.resosUpdated.next(this.reservations);
+        }),
         map(reservationData => {
           return reservationData.reservations.map(reso => {
             return {
@@ -71,17 +76,9 @@ export class ReservationService {
               reservationEndTime: new Date(reso.reservationEndTime)
             };
           });
-        })
+        }),
+        share()
       );
-
-    resosObservable.subscribe(reservations => {
-      // const userResos = reservations.filter(reso => {
-      //   return reso.userId !== userId;
-      // });
-
-      this.reservations = reservations;
-      this.resosUpdated.next(this.reservations);
-    });
 
     return resosObservable;
   }
