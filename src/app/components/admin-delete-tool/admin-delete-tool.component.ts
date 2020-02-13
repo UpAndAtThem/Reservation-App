@@ -4,6 +4,7 @@ import { ToolsService } from 'src/app/services/tools.service';
 import { MatDialog } from '@angular/material';
 import { AdminDeleteToolConfirmDialogComponent } from '../admin-delete-tool-confirm-dialog/admin-delete-tool-confirm-dialog.component';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-delete-tool',
@@ -16,7 +17,7 @@ export class AdminDeleteToolComponent implements OnInit {
 
   @Output() deletedTool = new EventEmitter();
 
-  constructor(private toolService: ToolsService, private deleteToolDialog: MatDialog) { }
+  constructor(private toolService: ToolsService, private deleteToolDialog: MatDialog, private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.toolSub = this.toolService.getToolUpdateListener().subscribe(toolData => {
@@ -27,10 +28,16 @@ export class AdminDeleteToolComponent implements OnInit {
   onToolDelete(toolData) {
     const dialogRef = this.deleteToolDialog.open(AdminDeleteToolConfirmDialogComponent, {data: toolData});
 
-    dialogRef.afterClosed().subscribe(res => {
-      this.toolService.deleteTool(toolData.tool);
-      this.tools = this.toolService.tools;
-      this.deletedTool.emit();
+    dialogRef.afterClosed().subscribe((confirmDelete: boolean) => {
+      if (confirmDelete) {
+        this.toolService.deleteTool(toolData.tool);
+        this.tools = this.toolService.tools;
+        this.deletedTool.emit();
+        this.toastrService.success(
+          toolData.tool.toolName + ' Deleted',
+          'Tool deleted successfully'
+        );
+      }
     });
   }
 }

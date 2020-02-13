@@ -3,6 +3,17 @@
   padding: 0px
 }
 
-/* .mat-dialog-container {
-  padding: 0px;
-} */
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: rgba(168, 101, 61, 0.993) !important;
+ }
+
+ ::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: rgba(168, 101, 61, 0.993) !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: rgba(168, 101, 61, 0.993) !important;
+}

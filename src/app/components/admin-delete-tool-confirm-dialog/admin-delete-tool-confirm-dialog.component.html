@@ -1,6 +1,8 @@
-<h1 mat-dialog-title>{{'Confirm Tool Deletion' | uppercase}}</h1>
-<p>{{ data.tool.toolName | uppercase }}</p>
-<div class='buttons'>
-  <button mat-raised-button color='primary' [mat-dialog-close]='true'>Confirm</button>
-  <button mat-raised-button [mat-dialog-close]='false'>Cancel</button>
+<div class="background">
+  <h1 mat-dialog-title>{{'Confirm Tool Deletion' | uppercase}}</h1>
+  <p>{{ data.tool.toolName | uppercase }}</p>
+  <div class='buttons'>
+    <button mat-raised-button class='true' [mat-dialog-close]='true'>Confirm</button>
+    <button mat-raised-button class='false' [mat-dialog-close]='false'>Cancel</button>
+  </div>
 </div>

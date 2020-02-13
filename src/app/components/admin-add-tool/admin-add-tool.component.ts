@@ -3,6 +3,7 @@ import { Tool } from 'src/app/models/Tool';
 import { ToolsService } from 'src/app/services/tools.service';
 import { MatDialog } from '@angular/material';
 import { AdminAddToolConfirmDialogComponent } from '../admin-add-tool-confirm-dialog/admin-add-tool-confirm-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { AdminAddToolConfirmDialogComponent } from '../admin-add-tool-confirm-di
 })
 export class AdminAddToolComponent implements OnInit {
 
-  constructor(private toolService: ToolsService, private addToolDialog: MatDialog) { }
+  constructor(private toolService: ToolsService, private addToolDialog: MatDialog, private toastrService: ToastrService) { }
 
   ngOnInit() {
   }
@@ -23,6 +24,7 @@ export class AdminAddToolComponent implements OnInit {
       if (res) {
         this.toolService.addTool(tool);
         dialogRef.close();
+        this.toastrService.success(tool.toolName + ' Added', 'Tool added successfully');
       }
     });
   }

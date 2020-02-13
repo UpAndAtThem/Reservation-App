@@ -23,13 +23,13 @@ const routes: Routes = [
   },
   {
     path: 'make_reservation',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     component: UserMakeReservationComponent
   },
   { path: 'contact', canActivate: [AuthGuard], component: ContactComponent },
   {
     path: 'admin',
-    canActivate: [AuthGuard, AuthGuardAdmin],
+    // canActivate: [AuthGuard, AuthGuardAdmin],
     component: AdminConfigComponent
   },
   { path: '**', component: LoginComponent }

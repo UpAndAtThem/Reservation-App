@@ -33,6 +33,12 @@ h2 {
   color: rgb(192, 133, 39);
 }
 
+button {
+  background-color: rgb(192, 133, 38) !important;
+  color: rgb(44, 22, 21) !important;
+  opacity: 1 !important;
+}
+
 .muli {
   font-family: 'Muli';
 }

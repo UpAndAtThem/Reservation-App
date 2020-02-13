@@ -3,6 +3,18 @@ p, h1 {
   font-family: 'Muli', Arial, Helvetica, sans-serif;
 }
 
+p {
+  margin-bottom: 30px;
+}
+
+.true {
+  background-color: rgb(143, 223, 143);
+}
+
+.false {
+  background-color: rgb(235, 113, 113);
+}
+
 .buttons {
   display: flex;
   justify-content: space-between;

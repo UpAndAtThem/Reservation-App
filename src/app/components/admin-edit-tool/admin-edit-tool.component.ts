@@ -4,6 +4,7 @@ import { Tool } from 'src/app/models/Tool';
 import { MatDialog } from '@angular/material';
 import { AdminEditToolInputDialogComponent } from '../admin-edit-tool-input-dialog/admin-edit-tool-input-dialog.component';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-edit-tool',
@@ -20,7 +21,8 @@ export class AdminEditToolComponent implements OnInit {
 
   constructor(
     protected toolService: ToolsService,
-    private editToolDialog: MatDialog
+    private editToolDialog: MatDialog,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit() {
@@ -43,6 +45,7 @@ export class AdminEditToolComponent implements OnInit {
         toolData.original.userNeedsCert = toolData.changes.userNeedsCert;
 
         this.toolService.changeEditedTool(toolData.original);
+        this.toastrService.success(`${toolData.original.toolName} Edited`, 'Tool edited successfully');
       }
     });
   }

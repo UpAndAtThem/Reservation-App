@@ -45,8 +45,8 @@
           }}</mat-error>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" [disabled]="f.form.invalid">
-          Find Reservation Times
+        <button mat-raised-button [disabled]="f.form.invalid">
+          {{ 'Find Reservation Times' | uppercase }}
         </button>
       </form>
     </mat-card-content>

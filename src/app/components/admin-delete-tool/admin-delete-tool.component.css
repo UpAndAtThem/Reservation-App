@@ -15,8 +15,8 @@ h3 {
 }
 
 mat-card {
-  background-color: rgb(255, 255, 255, 0.6) !important;
-  box-shadow: 3px 5px 25px rgb(56, 53, 53) !important;
+  background-color: rgb(255, 255, 255, 0.6);
+  box-shadow: 3px 5px 25px rgb(56, 53, 53);
   margin-left: 50px;
 }
 
