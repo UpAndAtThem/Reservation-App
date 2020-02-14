@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>{{ 'edit reservation: select new time' | uppercase }}</h1>
 <p class='mb-4'>{{ toolName + ':  ' | uppercase }}{{ reservationDate | date:'fullDate' | uppercase }}</p>
-<button mat-raised-button mat-dialog-close class="mb-5" color='primary'>{{ 'cancel' | uppercase }}</button>
+<button mat-raised-button mat-dialog-close class="mb-5 confirm-edit-color">{{ 'cancel' | uppercase }}</button>
 <mat-dialog-content>
   <button (click)="editReservationTime(timeSlot)" [disabled]='hasReservation(toolId, reservationDate, timeSlot)' *ngFor='let timeSlot of timeSlots' class='mb-3 ml-2 time-slot-button' mat-raised-button>{{ timeSlot }}</button>
 </mat-dialog-content>

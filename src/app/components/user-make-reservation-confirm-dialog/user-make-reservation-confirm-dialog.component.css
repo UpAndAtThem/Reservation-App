@@ -11,3 +11,8 @@ p, h1 {
 button {
   width: 45%;
 }
+
+.confirm-color {
+  background-color: rgb(192, 133, 38) !important;
+  color: rgb(44, 22, 21) !important;
+}

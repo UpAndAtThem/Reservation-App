@@ -25,3 +25,7 @@ p {
 .time-slot-button {
   padding: 0;
 }
+
+.confirm-edit-color {
+  background-color: rgb(192, 133, 38) !important;
+}

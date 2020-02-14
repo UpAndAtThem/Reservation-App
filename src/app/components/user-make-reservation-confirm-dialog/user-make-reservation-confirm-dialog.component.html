@@ -3,6 +3,6 @@
 <p>{{ data.date | date:'EEEE, MMMM d, y' | uppercase }}</p>
 <p class='mb-5'>{{ data.time }}</p>
 <div class='buttons'>
-  <button mat-raised-button color='primary' [mat-dialog-close]='true'>Confirm</button>
+  <button mat-raised-button class='confirm-color' [mat-dialog-close]='true'>Confirm</button>
   <button mat-raised-button [mat-dialog-close]='false'>Cancel</button>
 </div>
