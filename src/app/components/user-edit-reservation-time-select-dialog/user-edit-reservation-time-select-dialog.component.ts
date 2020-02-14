@@ -71,8 +71,6 @@ export class UserEditReservationTimeSelectDialogComponent implements OnInit {
     this.reservationService
       .editReso(this.data.reservation, this.userId)
       .subscribe((res: {message: string, status: string}) => {
-        console.log(res);
-
         this.reservationService
         .getReservations(this.userService.user.userId)
         .subscribe(reservations => {

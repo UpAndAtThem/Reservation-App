@@ -17,14 +17,6 @@ router.post('/addUser', (req, res, next) => {
       password: hash
     });
 
-    new User({
-      email: 'jasonn318@gmail.com',
-      firstName: 'Jason',
-      lastName: 'Nelson',
-      password: '$2b$10$86r5lj8A27iyYt8GpFIdpu74BGP8KdcLPgNHj4LenX/IGVHKqZBFG',
-      isAdmin: true
-    });
-
     userDB
       .save()
       .then(result => {
@@ -60,8 +52,7 @@ router.post('/getUser', (req, res, next) => {
                 token: token
               });
             }
-            console.log('login failed');
-            res.status(401).json({ status: '401', message: 'Auth Failed', jwt: token });
+            res.status(401).json({ status: '401', message: 'Auth Failed' });
           })
           .catch(err => {
             console.log('\n\nError\n\n', err);

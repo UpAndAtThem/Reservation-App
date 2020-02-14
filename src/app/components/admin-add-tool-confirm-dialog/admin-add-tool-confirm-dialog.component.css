@@ -8,6 +8,10 @@ p, h1 {
   justify-content: space-between;
 }
 
+.submit-add-button {
+  background-color: rgb(143, 223, 143);
+}
+
 button {
   width: 45%;
 }

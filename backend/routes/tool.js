@@ -17,7 +17,7 @@ router.post('/addTool', (req, res, next) => {
 });
 
 router.post('/updateTool', (req, res, next) => {
-  Tool.updateOne({_id: req.body._id}, req.body).then((res => {
+  Tool.updateOne({_id: req.body._id}, req.body).then((resp => {
     res.status(201).json({ message: 'Tool updated successfully'});
   }));
 });

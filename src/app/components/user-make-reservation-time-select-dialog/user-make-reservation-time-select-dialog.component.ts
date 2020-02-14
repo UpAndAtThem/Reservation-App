@@ -93,8 +93,6 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
 
       if (confirmed) {
         this.reservationService.addReservation(newReso).subscribe((response: {status: string, message: string}) => {
-          console.log(response);
-
           if (response.status === '201') {
             this.toastrService.success(
               formatDate(newReso.reservationStartTime, 'short', 'en-US'),
