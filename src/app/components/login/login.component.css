@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 350px;
+  height: 380px;
   width: 100%;
   margin: auto;
   margin-top: 10px;
@@ -20,6 +20,7 @@ mat-card-content {
 }
 
 mat-card-title {
+  margin-bottom: 10px !important;
   text-align: center;
   letter-spacing: 10px;
 }
@@ -37,6 +38,14 @@ mat-card-title {
 .right {
   width: 20%;
   align-self: flex-end;
+}
+
+.log {
+  background-color: black;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  margin: 20px auto 10px auto !important;
 }
 
 button.submit {

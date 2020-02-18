@@ -101,10 +101,6 @@ export class UserMakeReservationTimeSelectDialogComponent implements OnInit {
 
             this.router.navigate(['user_home']);
             this.dialogRef.close();
-
-            this.reservationService.getReservations(this.userId).subscribe(reservations => {
-              this.reservationService.resosUpdated.next(reservations);
-            });
           } else {
             this.toastrService.error(
               formatDate(newReso.reservationStartTime, 'short', 'en-US'),

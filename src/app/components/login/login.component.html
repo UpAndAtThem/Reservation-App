@@ -1,6 +1,9 @@
 <div class="background">
   <div class="login">
     <mat-card>
+      <div class="log">
+        <img src="../../../assets/log.png" alt="">
+      </div>
       <mat-card-title class='mb-5'>{{'Login' | uppercase }}</mat-card-title>
       <mat-card-content>
         <form #f="ngForm" (ngSubmit)="onLoginSubmit(f)" class="flex">
@@ -41,7 +44,7 @@
           </button>
         </form>
       </mat-card-content>
-      <a routerLink="/sign_up" routerLinkActive="active" class="right">sign up</a>
+      <a routerLink="/sign_up" routerLinkActive="active" class="right mb-5">sign up</a>
     </mat-card>
   </div>
 </div>

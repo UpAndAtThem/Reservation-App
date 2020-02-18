@@ -1,7 +1,7 @@
 <table mat-table [dataSource]="resos" class="mat-elevation-z8">
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef> {{'Date' | uppercase }} </th>
-    <td mat-cell *matCellDef="let element"> {{element.reservationStartTime | date }} </td>
+    <td mat-cell *matCellDef="let element"> {{element.reservationStartTime | date:'MMMM d' }} </td>
   </ng-container>
 
   <ng-container matColumnDef="startTime">

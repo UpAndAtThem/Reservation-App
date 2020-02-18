@@ -1,8 +1,7 @@
 const jwt = require('jsonwebtoken');
-let count = 1;
+
 module.exports = (req, res, next) => {
   try {
-    console.log('round number number: ', count++);
     console.log('\n\n\n',req.headers);
 
     console.log(req.headers.authorization, '\n\n\n');

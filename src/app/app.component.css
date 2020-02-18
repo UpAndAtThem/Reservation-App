@@ -22,6 +22,15 @@
   color: rgb(156, 135, 107) !important;
 }
 
-input:focus ~ label.ee .change-color {
-  color: #00dd22;
+::ng-deep .mat-calendar-body-selected {
+  background-color: #9e6b29 !important;
+  color: #fff !important;
 }
+
+::ng-deep .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  border-color: rgba(87, 51, 10, 0.38);
+}
+
+::ng-deep mat-datepicker-toggle {
+  color: rgb(133, 86, 33) !important;
+ }
