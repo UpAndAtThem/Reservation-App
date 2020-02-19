@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { share, tap } from 'rxjs/operators';
+import { Observable, Subject, of, merge } from 'rxjs';
+import { share, tap, mergeMap, switchMap } from 'rxjs/operators';
 import { Reservation } from '../models/Reservation';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -62,7 +62,7 @@ export class ReservationService {
         `http://localhost:3000/api/reservation/reservations/${this.userService.user._id}`
       )
       .pipe(
-        tap((reservationData) => {
+        tap(reservationData => {
           this.reservations = reservationData.reservations;
           this.resosUpdated.next(this.reservations);
         }),
@@ -126,6 +126,19 @@ export class ReservationService {
         'http://localhost:3000/api/reservation/editReso',
         updatedReso,
         httpOptions
+      )
+      .pipe(
+        switchMap((response: any) => {
+          if (response.status === '401') {
+            return of({ message: 'Error', status: '401' });
+          } else {
+            return this.getReservations(this.userService.user.userId).pipe(
+              tap(reservations => {
+                this.resosUpdated.next(reservations);
+              })
+            );
+          }
+        })
       );
   }
 
@@ -141,11 +154,14 @@ export class ReservationService {
         `http://localhost:3000/api/reservation/deleteReservation/${reservation.reservationId}`,
         httpOptions
       )
+      .pipe(
+        switchMap(_ => {
+          return this.getReservations(this.userService.user._id);
+        })
+      )
       .subscribe(res => {
-        this.getReservations(this.userService.user._id).subscribe(response => {
-          this.reservations = response;
-          this.resosUpdated.next(response);
-        });
+        this.reservations = res;
+        this.resosUpdated.next(res);
       });
   }
 

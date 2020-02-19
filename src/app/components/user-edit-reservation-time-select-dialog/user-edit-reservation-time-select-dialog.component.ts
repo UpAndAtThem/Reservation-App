@@ -70,14 +70,8 @@ export class UserEditReservationTimeSelectDialogComponent implements OnInit {
 
     this.reservationService
       .editReso(this.data.reservation, this.userId)
-      .subscribe((res: {message: string, status: string}) => {
-        this.reservationService
-        .getReservations(this.userService.user.userId)
-        .subscribe(reservations => {
-          this.reservationService.resosUpdated.next(reservations);
-        });
-
-        if (res.status === '201') {
+      .subscribe((res: any) => {
+        if (res.status !== '401') {
           this.dialogRef.close();
           this.toastrService.success(
             `New Reservation: ${this.toolName} ${formatDate(

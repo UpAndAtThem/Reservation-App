@@ -77,6 +77,10 @@ mat-table {
   width: 20% !important;
 }
 
+.edit-icon, .delete-icon {
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 770px) {
   mat-table {
     width: 100% !important;
